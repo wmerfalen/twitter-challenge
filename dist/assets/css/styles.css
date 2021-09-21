@@ -1,0 +1,153 @@
+/** 
+ * Custom font faces
+ */
+@font-face {
+    font-family: TwitterChirpExtendedHeavy;
+    src: url("/public/twitter/dist/assets/fonts/chirp-extended-heavy-web.woff");
+}
+@font-face {
+    font-family: TwitterChirpBold;
+    src: url("/public/twitter/dist/assets/fonts/chirp-bold-web.woff");
+}
+@font-face {
+    font-family: TwitterNormal;
+    src: url("/public/twitter/dist/assets/fonts/chirp-regular-web.woff");
+}
+
+/**
+ * CSS Variables
+ */
+:root {
+    --main-bg-color: rgb(0,0,0);
+    --main-foreground-color: rgb(217, 217, 217);
+    --logo-height: 100%;
+    --logo-width: 100%;
+    --full-width: 100%;
+    --full-height: 100%;
+    --happening-font: TwitterChirpExtendedHeavy, Verdana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --happening-font-size: 61px;
+    --happening-color: rgb(217, 217, 217);
+    --login-padding-left: 1em;
+    --join-font: TwitterChirpExtendedHeavy, Verdana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --join-font-size: 31px;
+    --page-height: 1024px;
+    --tos-font-color: rgb(110, 118, 125);
+    --tos-link-color: rgb(27, 149, 224);
+}
+
+
+/**
+ * Mount point
+ */
+#app {
+    height: 100%;
+    width: 100%;
+}
+
+/**
+ * Removing default browser style sheet
+ */
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: var(--main-bg-color);
+    width: 100%;
+    height: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a:visited {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a:active {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+
+}
+
+.flex-vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.login {
+    height: var(--page-height);
+    background-color: var(--main-bg-color);
+    border: 1px solid red;
+    width: 49%;
+    margin-left: 2em;
+}
+.login span.tos {
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--tos-font-color);
+    font-size: 13px;
+}
+.login a.single-sign-on {
+    margin-bottom: 20px;
+}
+.login span.tos a:active {
+    color: var(--tos-link-color);
+}
+.login span.tos a{
+    color: var(--tos-link-color);
+}
+.login span.tos a:visited {
+    color: var(--tos-link-color);
+}
+.login span.tos a:hover {
+    color: var(--tos-link-color);
+    text-decoration: underline;
+}
+.splash {
+    background-image: url("/public/twitter/dist/assets/img/login-background.png");
+    height: var(--page-height);
+    width: 49%;
+    background-color: var(--main-bg-color);
+    border: 2px dashed yellow;
+}
+
+.split-columns {
+    flex-direction: row;
+    display: flex;
+}
+
+.login svg {
+    color: var(--main-foreground-color);
+    filter: invert(100%);
+    height: 33px;
+    align-self: flex-start;
+}
+
+.splash svg {
+    color: var(--main-foreground-color);
+    filter: invert(100%);
+    max-height: 380px;
+}
+.login h1 {
+    font-family: var(--happening-font);
+    color: var(--main-foreground-color);
+    font-size: var(--happening-font-size);
+    margin-bottom: 41px;
+    margin-top: 41px;
+}
+
+.login h2 {
+    font-family: var(--join-font);
+    color: var(--main-foreground-color);
+    font-size: var(--join-font-size);
+}
+
+
+.justify {
+    /*-webkit-box-pack: center;
+    justify-content: center;
+    */
+}
