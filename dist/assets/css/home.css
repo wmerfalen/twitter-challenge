@@ -1,0 +1,150 @@
+/**
+ * CSS Variables
+ */
+:root {
+    --main-bg-color: rgb(0,0,0);
+    --main-foreground-color: rgb(217, 217, 217);
+    --logo-height: 100%;
+    --logo-width: 100%;
+    --full-width: 100%;
+    --full-height: 100%;
+    --happening-font: TwitterChirpExtendedHeavy, Verdana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --happening-font-size: 61px;
+    --happening-color: rgb(217, 217, 217);
+    --login-padding-left: 1em;
+    --join-font: TwitterChirpExtendedHeavy, Verdana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --join-font-size: 31px;
+    --page-height: 1024px;
+    --tos-font-color: rgb(110, 118, 125);
+    --tos-link-color: rgb(27, 149, 224);
+    --sso-link-background-color: white;
+    --sso-link-foreground-color: rgb(15, 20, 25);
+    --sso-link-font-size: 15px;
+    --sso-link-font-weight: 700;
+    --sso-link-line-height: 20px;
+    --existing-members-font-color: rgb(217, 217, 217);
+    --twitter-chirp-font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --one-third-width: 340px;
+    --tweet-font-size: 13pt;
+}
+/** 
+ * Custom font faces
+ * -- TODO: snip these and push them into a shared css file
+ * -- [[[ START -- NEEDS SNIPPING ]]] --
+ */
+@font-face {
+    font-family: TwitterChirpExtendedHeavy;
+    src: url("/public/twitter/dist/assets/fonts/chirp-extended-heavy-web.woff");
+}
+@font-face {
+    font-family: TwitterChirpBold;
+    src: url("/public/twitter/dist/assets/fonts/chirp-bold-web.woff");
+}
+@font-face {
+    font-family: TwitterChirp;
+    src: url("/public/twitter/dist/assets/fonts/chirp-regular-web.woff");
+}
+/**
+ * Removing default browser style sheet
+ */
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: var(--main-bg-color);
+    width: 100%;
+    height: 100%;
+}
+
+/**
+ * -- [[[ END -- NEEDS SNIPPING ]]] --
+ */
+
+
+.profile-image {
+    border-radius: 50%;
+}
+
+input {
+    background-color: var(--main-bg-color);
+    color: var(--main-foreground-color);
+    font-size: var(--tweet-font-size);
+    padding: 1em 2em 1em 1em;
+    border: 1px solid red;
+}
+
+/**
+ * Mount point
+ */
+#home-app {
+    height: 100%;
+    width: 100%;
+}
+
+
+a:hover {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a:visited {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a:active {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+
+}
+
+.flex-vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.three-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 11px solid blue;
+}
+.left-nav {
+    border: 1px solid green;
+}
+div {
+    border: 1px solid red;
+    color: white;
+}
+.tweet-visibility {
+    border: 1px solid green;
+}
+.tweet-visibility svg {
+    filter: invert(100%) sepia(100%) hue-rotate(190deg) saturate(500%);
+    width: 20px;
+    height: 20px;
+}
+span.visibility-popup .selection img {
+    float: left;
+    filter: invert(100%);
+    width: 20px;
+    height: 20px;
+}
+.hidden {
+    /* display: none; */ /** TODO remove me */
+}
+
+.floats-near {
+    position: relative;
+    float: left;
+}
+.backdrop {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 1024px;
+    width: 1024px;
+    opacity: 0.5;
+    background-color: black;
+}
