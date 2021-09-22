@@ -3,7 +3,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 import NavIcon from './nav-icon.js';
 
 function LeftNav() {
-    var _React$useState = React.useState(window.location.href.split('#')[1]),
+    var _React$useState = React.useState(window.location.href.split('public/twitter/dist/')[1]),
         _React$useState2 = _slicedToArray(_React$useState, 2),
         page = _React$useState2[0],
         setPage = _React$useState2[1];
@@ -37,13 +37,12 @@ function LeftNav() {
     };
 
     React.useEffect(function () {
-
         console.log('useEffects: ', { page: page });
         window.location.href = 'https://fluxkraft-os.net/public/twitter/dist/home.html#' + page;
     });
     return React.createElement(
         'div',
-        { className: 'nav-wrapper' },
+        null,
         React.createElement(NavIcon, { type: 'twitter', clickHandler: setPage, active: isTwitter() }),
         React.createElement(NavIcon, { type: 'home', clickHandler: setPage, active: isHome() }),
         React.createElement(NavIcon, { type: 'messages', clickHandler: setPage, active: isMessages() }),

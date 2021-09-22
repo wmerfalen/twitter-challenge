@@ -92,89 +92,44 @@ function NavIcon(_ref) {
             React.createElement("path", { d: "M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z" })
         )
     );
+    function createEntry(icon, description) {
+        return React.createElement(
+            "div",
+            { className: "icon-wrapper", onClick: function onClick() {
+                    return clickHandler(type);
+                } },
+            React.createElement(
+                "div",
+                { className: "icon" },
+                icon
+            ),
+            React.createElement(
+                "div",
+                { className: "description" },
+                description
+            )
+        );
+    }
     switch (type) {
         default:
         case 'twitter':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                twitter_icon
-            );
-            break;
+            return createEntry(twitter_icon, "");
         case 'home':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                home_icon
-            );
-            break;
+            return createEntry(home_icon, "Home");
         case 'explore':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                explore_icon
-            );
-            break;
+            return createEntry(explore_icon, "Explore");
         case 'notifications':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                notifications_icon
-            );
-            break;
+            return createEntry(notifications_icon, "Notifications");
         case 'messages':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                messages_icon
-            );
-            break;
+            return createEntry(messages_icon, "Messages");
         case 'bookmarks':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                bookmarks_icon
-            );
-            break;
+            return createEntry(bookmarks_icon, "Bookmarks");
         case 'lists':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                lists_icon
-            );
-            break;
+            return createEntry(lists_icon, "Lists");
         case 'profile':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                profile_icon
-            );
-            break;
+            return createEntry(profile_icon, "Profile");
         case 'more':
-            return React.createElement(
-                "div",
-                { onClick: function onClick() {
-                        return clickHandler(type);
-                    } },
-                more_icon
-            );
-            break;
+            return createEntry(more_icon, "More");
     }
 }
 

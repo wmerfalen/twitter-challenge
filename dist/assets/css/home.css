@@ -24,8 +24,9 @@
     --sso-link-line-height: 20px;
     --existing-members-font-color: rgb(217, 217, 217);
     --twitter-chirp-font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --one-third-width: 340px;
     --tweet-font-size: 13pt;
+    --home-max-width: 450px;
+    --home-min-width: 550px;
 }
 /** 
  * Custom font faces
@@ -59,6 +60,22 @@ body {
  * -- [[[ END -- NEEDS SNIPPING ]]] --
  */
 
+
+/**
+ * Media queries for different sizes of browser windows
+ */
+@media (max-width: 700px) {
+  .icon-wrapper .description {
+      display: none;
+  }
+  .icon-wrapper .icon {
+      float: right;
+  }
+  .nav-wrapper {
+      max-width: 40px;
+      float: right;
+  }
+}
 
 .profile-image {
     border-radius: 50%;
@@ -99,22 +116,29 @@ a {
 
 }
 
-.flex-vertical-center {
+.main-content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
-
-.three-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border: 11px solid blue;
+.left-padding {
+    display: flex;
+    width: 256px;
+    flex-shrink: 10;
+    flex-grow: 0.01;
+}
+.center-column {
+    max-width: var(--home-max-width);
+    /*
+    min-width: var(--home-min-width);
+    */
+    flex-grow: 0;
+    flex-shrink: 10;
 }
 .left-nav {
+    flex-grow: 0;
     border: 1px solid green;
+    display: flex;
 }
 div {
-    border: 1px solid red;
     color: white;
 }
 .tweet-visibility {
@@ -153,11 +177,13 @@ div {
     filter: invert(100%);
 }
 .nav-icon {
-    width: 2.5em;
-    height: 2.5em;
-    float: right;
+    width: 2em;
+    height: 1.2em;
     clear: both;
-    background-color: green;
+    filter: invert(100%);
+}
+.nav-icon span {
+    float: right;
 }
 .nav-icon .active {
     background-color: blue;
@@ -165,3 +191,52 @@ div {
 .nav-icon:hover {
     cursor: pointer;
 }
+#left-nav div  {
+    font-family: var(--twitter-chirp-font-family);
+}
+.icon-wrapper {
+    display: grid;
+    grid-template-columns: 2em 200px;
+    margin-bottom: 1em;
+}
+.icon-wrapper .description {
+    font-size: 1.2em;
+}
+.icon-wrapper .icon {
+    max-width: 2em;
+}
+
+.tweet-footer {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    font-family: var(--twitter-chirp-font-family);
+    font-size: 13px;
+    margin: 0.5em;
+}
+
+
+div.tweet-footer svg {
+    filter: invert(100%);
+    height: 12px;
+    margin-right: 0.5em;
+}
+
+div.tweet-container {
+    padding: 1em;
+    font-family: var(--twitter-chirp-font-family);
+    font-size: 13px;
+}
+div.tweet-footer .blue-hover:hover {
+    cursor: pointer;
+    color: var(--tos-link-color);
+}
+div.tweet-footer .blue-hover:hover svg {
+    cursor: pointer;
+    color: var(--tos-link-color);
+}
+
+div.tweet-footer .red-hover:hover {
+    cursor: pointer;
+    color: rgb(231,36,128);
+}
+

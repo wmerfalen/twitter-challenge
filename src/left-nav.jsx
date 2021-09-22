@@ -2,7 +2,7 @@
 import NavIcon from './nav-icon.js';
 
 function LeftNav(){
-    const [page,setPage] = React.useState(window.location.href.split('public/twitter/dist/')[1]);
+    const [page,setPage] = React.useState(window.location.href.split('#')[1]);
     const isTwitter = () => page === 'twitter';
     const isHome = () => page === 'home';
     const isMessages = () => page === 'messages';
@@ -15,11 +15,12 @@ function LeftNav(){
 
 
     React.useEffect(() => {
+
         console.log('useEffects: ',{page});
         window.location.href='https://fluxkraft-os.net/public/twitter/dist/home.html#' + page;
     });
     return (
-        <div>
+        <div className="nav-wrapper">
             <NavIcon type="twitter" clickHandler={setPage} active={isTwitter()}/>
             <NavIcon type="home" clickHandler={setPage} active={isHome()}/>
             <NavIcon type="messages" clickHandler={setPage} active={isMessages()}/>
