@@ -2,6 +2,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 function LoginTracker() {
     var LOGIN_STATE = 'login-state';
+    var logoutButton = React.useRef();
 
     var _React$useState = React.useState(window.localStorage.getItem(LOGIN_STATE) || 'logged-out'),
         _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -9,7 +10,7 @@ function LoginTracker() {
         setLoginState = _React$useState2[1];
 
     React.useEffect(function () {
-        setLoginState(loginState);
+        window.localStorage.setItem(LOGIN_STATE, loginState);
     });
     if (loginState !== 'logged-in') {
         window.location.href = '/public/twitter/dist';
@@ -18,7 +19,14 @@ function LoginTracker() {
     return React.createElement(
         'div',
         null,
-        'Logged in'
+        'Logged in ',
+        React.createElement(
+            'button',
+            { onClick: function onClick() {
+                    return setLoginState('logged-out');
+                } },
+            'Click here to log out'
+        )
     );
 }
 ReactDOM.render(React.createElement(LoginTracker, null), document.getElementById('login-tracker'));
