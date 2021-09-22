@@ -131,14 +131,7 @@ div {
     width: 20px;
     height: 20px;
 }
-.hidden {
-    /* display: none; */ /** TODO remove me */
-}
 
-.floats-near {
-    position: relative;
-    float: left;
-}
 .backdrop {
     position: absolute;
     left: 0px;
@@ -155,4 +148,20 @@ div {
     position: absolute;
     z-index: 1;
     opacity: 1;
+}
+.active {
+    filter: invert(100%);
+}
+.nav-icon {
+    width: 2.5em;
+    height: 2.5em;
+    float: right;
+    clear: both;
+    background-color: green;
+}
+.nav-icon .active {
+    background-color: blue;
+}
+.nav-icon:hover {
+    cursor: pointer;
 }
