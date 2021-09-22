@@ -2,18 +2,22 @@
 const POPUP_ID = 'tweet-visibility-popup';
 const BACKDROP_ID = 'tweet-visibility-backdrop';
 function FloatingVisibilityBox({eventInfo,placeResultAt}){
-    function everyoneClicked(event){
+    const [visibility,setVisibility] = React.useState('everyone');
+    React.useEffect(() => {
         event.preventDefault();
-        placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/> Everyone can reply';
-    }
-    function followClicked(event){
-        event.preventDefault();
-        placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/users.svg"/> People you follow can reply';
-    }
-    function mentionClicked(event){
-        event.preventDefault();
-        placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/> Only people you mention can reply';
-    }
+        switch(visibility){
+            default:
+            case 'everyone':
+                placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/> Everyone can reply';
+                break;
+            case 'follow':
+                placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/users.svg"/> People you follow can reply';
+                break;
+            case 'mention':
+                placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/> Only people you mention can reply';
+                break;
+        }
+    })
     const floatingStyle = {
         position: 'absolute',
         left: eventInfo.clientX + 'px',
@@ -28,24 +32,18 @@ function FloatingVisibilityBox({eventInfo,placeResultAt}){
                 Choose who can reply to this Tweet.<br/>
                 Anyone mentioned can always reply.
                 </p>
-                <a href="javascript:void(0)" onClick={everyoneClicked}>
-                    <div className="selection">
+                    <div className="selection" onClick={() => setVisibility('everyone')}>
                         <img className="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/>
                         <p>Everyone</p>
                     </div>
-                </a>
-                <a href="javascript:void(0)" onClick={followClicked}>
-                    <div className="selection">
+                    <div className="selection" onClick={() => setVisibility('follow')}>
                         <img className="visibility-icon" src="assets/img/font-awesome-svgs/users.svg"/>
                         <p>People you follow</p>
                     </div>
-                </a>
-                <a href="javascript:void(0)" onClick={mentionClicked}>
-                    <div className="selection">
+                    <div className="selection" onClick={() => setVisibility('mention')}>
                         <img className="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/>
                         <p>Only people you mention</p>
                     </div>
-                </a>
             </span>
     );
 }

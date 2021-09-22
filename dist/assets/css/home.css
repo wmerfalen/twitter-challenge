@@ -148,3 +148,6 @@ div {
     opacity: 0.5;
     background-color: black;
 }
+.selection:hover {
+    cursor: pointer;
+}

@@ -1,3 +1,4 @@
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var POPUP_ID = 'tweet-visibility-popup';
 var BACKDROP_ID = 'tweet-visibility-backdrop';
@@ -5,18 +6,26 @@ function FloatingVisibilityBox(_ref) {
     var eventInfo = _ref.eventInfo,
         placeResultAt = _ref.placeResultAt;
 
-    function everyoneClicked(event) {
+    var _React$useState = React.useState('everyone'),
+        _React$useState2 = _slicedToArray(_React$useState, 2),
+        visibility = _React$useState2[0],
+        setVisibility = _React$useState2[1];
+
+    React.useEffect(function () {
         event.preventDefault();
-        placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/> Everyone can reply';
-    }
-    function followClicked(event) {
-        event.preventDefault();
-        placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/users.svg"/> People you follow can reply';
-    }
-    function mentionClicked(event) {
-        event.preventDefault();
-        placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/> Only people you mention can reply';
-    }
+        switch (visibility) {
+            default:
+            case 'everyone':
+                placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/> Everyone can reply';
+                break;
+            case 'follow':
+                placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/users.svg"/> People you follow can reply';
+                break;
+            case 'mention':
+                placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/> Only people you mention can reply';
+                break;
+        }
+    });
     var floatingStyle = {
         position: 'absolute',
         left: eventInfo.clientX + 'px',
@@ -40,45 +49,39 @@ function FloatingVisibilityBox(_ref) {
             'Anyone mentioned can always reply.'
         ),
         React.createElement(
-            'a',
-            { href: 'javascript:void(0)', onClick: everyoneClicked },
+            'div',
+            { className: 'selection', onClick: function onClick() {
+                    return setVisibility('everyone');
+                } },
+            React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/globe.svg' }),
             React.createElement(
-                'div',
-                { className: 'selection' },
-                React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/globe.svg' }),
-                React.createElement(
-                    'p',
-                    null,
-                    'Everyone'
-                )
+                'p',
+                null,
+                'Everyone'
             )
         ),
         React.createElement(
-            'a',
-            { href: 'javascript:void(0)', onClick: followClicked },
+            'div',
+            { className: 'selection', onClick: function onClick() {
+                    return setVisibility('follow');
+                } },
+            React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/users.svg' }),
             React.createElement(
-                'div',
-                { className: 'selection' },
-                React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/users.svg' }),
-                React.createElement(
-                    'p',
-                    null,
-                    'People you follow'
-                )
+                'p',
+                null,
+                'People you follow'
             )
         ),
         React.createElement(
-            'a',
-            { href: 'javascript:void(0)', onClick: mentionClicked },
+            'div',
+            { className: 'selection', onClick: function onClick() {
+                    return setVisibility('mention');
+                } },
+            React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/lock.svg' }),
             React.createElement(
-                'div',
-                { className: 'selection' },
-                React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/lock.svg' }),
-                React.createElement(
-                    'p',
-                    null,
-                    'Only people you mention'
-                )
+                'p',
+                null,
+                'Only people you mention'
             )
         )
     );
