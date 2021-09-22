@@ -27,15 +27,12 @@ function FloatingVisibilityBox(_ref) {
         }
     });
     var floatingStyle = {
-        position: 'absolute',
         left: eventInfo.clientX + 'px',
-        top: eventInfo.clientY + 'px',
-        zIndex: 0,
-        opacity: 1.0
+        top: eventInfo.clientY + 'px'
     };
     return React.createElement(
         'span',
-        { className: 'visibility-popup hidden floats-near', style: floatingStyle },
+        { className: 'visibility-popup', style: floatingStyle },
         React.createElement(
             'h4',
             null,

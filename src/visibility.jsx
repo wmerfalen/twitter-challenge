@@ -19,32 +19,29 @@ function FloatingVisibilityBox({eventInfo,placeResultAt}){
         }
     })
     const floatingStyle = {
-        position: 'absolute',
         left: eventInfo.clientX + 'px',
         top: eventInfo.clientY + 'px',
-        zIndex: 0,
-        opacity: 1.0,
     };
     return (
-            <span className="visibility-popup hidden floats-near" style={floatingStyle}>
-                <h4>Who can reply?</h4>
-                <p className="description">
-                Choose who can reply to this Tweet.<br/>
-                Anyone mentioned can always reply.
-                </p>
-                    <div className="selection" onClick={() => setVisibility('everyone')}>
-                        <img className="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/>
-                        <p>Everyone</p>
-                    </div>
-                    <div className="selection" onClick={() => setVisibility('follow')}>
-                        <img className="visibility-icon" src="assets/img/font-awesome-svgs/users.svg"/>
-                        <p>People you follow</p>
-                    </div>
-                    <div className="selection" onClick={() => setVisibility('mention')}>
-                        <img className="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/>
-                        <p>Only people you mention</p>
-                    </div>
-            </span>
+        <span className="visibility-popup" style={floatingStyle}>
+            <h4>Who can reply?</h4>
+            <p className="description">
+            Choose who can reply to this Tweet.<br/>
+            Anyone mentioned can always reply.
+            </p>
+            <div className="selection" onClick={() => setVisibility('everyone')}>
+                <img className="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/>
+                <p>Everyone</p>
+            </div>
+            <div className="selection" onClick={() => setVisibility('follow')}>
+                <img className="visibility-icon" src="assets/img/font-awesome-svgs/users.svg"/>
+                <p>People you follow</p>
+            </div>
+            <div className="selection" onClick={() => setVisibility('mention')}>
+                <img className="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/>
+                <p>Only people you mention</p>
+            </div>
+        </span>
     );
 }
 function TweetVisibility(){

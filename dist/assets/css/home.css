@@ -151,3 +151,8 @@ div {
 .selection:hover {
     cursor: pointer;
 }
+.visibility-popup {
+    position: absolute;
+    z-index: 1;
+    opacity: 1;
+}
