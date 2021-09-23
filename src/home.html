@@ -22,10 +22,23 @@
                 <div class="left-nav column" id="left-nav"></div>
                 <div class="center-column column">
                     <div id="home">
-                        <img src="assets/img/me.jpg" class="profile-image"/>
-                        <input type="text" name="tweet" placeholder="What's happening?"/>
-                        <br/>
-                        <div id="tweet-visibility"></div>
+                        <div class="profile-image-wrapper">
+                            <img src="assets/img/me.jpg" class="profile-image"/>
+                        </div>
+                        <div class="compose-tweet">
+                            <div>
+                                <input type="text" name="tweet" placeholder="What's happening?"/>
+                            </div>
+                            <div>
+                                <div id="tweet-visibility"></div>
+                            </div>
+                            <div class="tweet-options">
+                                <div></div>
+                                <div>
+                                    <a class="tweet-button" href="javascript:void(0)">Tweet</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div id="create-tweet"></div>
                     <div id="main-feed"></div>

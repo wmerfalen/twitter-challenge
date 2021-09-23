@@ -2,11 +2,12 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var POPUP_ID = 'tweet-visibility-popup';
 var BACKDROP_ID = 'tweet-visibility-backdrop';
+var VISIBILITY = 'visibility-preference';
 function FloatingVisibilityBox(_ref) {
     var eventInfo = _ref.eventInfo,
         placeResultAt = _ref.placeResultAt;
 
-    var _React$useState = React.useState('everyone'),
+    var _React$useState = React.useState(window.localStorage.getItem(VISIBILITY)),
         _React$useState2 = _slicedToArray(_React$useState, 2),
         visibility = _React$useState2[0],
         setVisibility = _React$useState2[1];
@@ -25,6 +26,7 @@ function FloatingVisibilityBox(_ref) {
                 placeResultAt.current.innerHTML = '<img class="visibility-icon" src="assets/img/font-awesome-svgs/lock.svg"/> Only people you mention can reply';
                 break;
         }
+        window.localStorage.setItem(VISIBILITY, visibility);
     });
     var floatingStyle = {
         left: eventInfo.clientX + 'px',
@@ -50,11 +52,20 @@ function FloatingVisibilityBox(_ref) {
             { className: 'selection', onClick: function onClick() {
                     return setVisibility('everyone');
                 } },
-            React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/globe.svg' }),
             React.createElement(
-                'p',
+                'div',
+                null,
+                React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/globe.svg' })
+            ),
+            React.createElement(
+                'div',
                 null,
                 'Everyone'
+            ),
+            React.createElement(
+                'div',
+                { className: 'check-mark' },
+                visibility === 'everyone' ? React.createElement('img', { src: 'assets/img/font-awesome-svgs/check.svg' }) : ''
             )
         ),
         React.createElement(
@@ -62,11 +73,20 @@ function FloatingVisibilityBox(_ref) {
             { className: 'selection', onClick: function onClick() {
                     return setVisibility('follow');
                 } },
-            React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/users.svg' }),
             React.createElement(
-                'p',
+                'div',
+                null,
+                React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/users.svg' })
+            ),
+            React.createElement(
+                'div',
                 null,
                 'People you follow'
+            ),
+            React.createElement(
+                'div',
+                { className: 'check-mark' },
+                visibility === 'follow' ? React.createElement('img', { src: 'assets/img/font-awesome-svgs/check.svg' }) : ''
             )
         ),
         React.createElement(
@@ -74,11 +94,20 @@ function FloatingVisibilityBox(_ref) {
             { className: 'selection', onClick: function onClick() {
                     return setVisibility('mention');
                 } },
-            React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/lock.svg' }),
             React.createElement(
-                'p',
+                'div',
+                null,
+                React.createElement('img', { className: 'visibility-icon', src: 'assets/img/font-awesome-svgs/lock.svg' })
+            ),
+            React.createElement(
+                'div',
                 null,
                 'Only people you mention'
+            ),
+            React.createElement(
+                'div',
+                { className: 'check-mark' },
+                visibility === 'mention' ? React.createElement('img', { src: 'assets/img/font-awesome-svgs/check.svg' }) : ''
             )
         )
     );
@@ -121,7 +150,7 @@ function TweetVisibility() {
 
     return React.createElement(
         'div',
-        null,
+        { className: 'visibility-wrapper' },
         React.createElement(
             'a',
             { href: 'javascript:void(0)', onClick: handleClick },

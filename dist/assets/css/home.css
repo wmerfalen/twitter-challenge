@@ -2,8 +2,9 @@
  * CSS Variables
  */
 :root {
-    --main-bg-color: rgb(0,0,0);
+    --main-background-color: rgb(0,0,0);
     --main-foreground-color: rgb(217, 217, 217);
+    --main-fade-color: grey;
     --logo-height: 100%;
     --logo-width: 100%;
     --full-width: 100%;
@@ -25,6 +26,7 @@
     --existing-members-font-color: rgb(217, 217, 217);
     --twitter-chirp-font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --tweet-font-size: 13pt;
+    --twitter-blue: rgb(29, 155, 240);
     --home-max-width: 450px;
     --home-min-width: 550px;
 }
@@ -51,9 +53,10 @@
 body {
     padding: 0px;
     margin: 0px;
-    background-color: var(--main-bg-color);
+    background-color: var(--main-background-color);
     width: 100%;
     height: 100%;
+    font-family: var(--twitter-chirp-font-family);
 }
 
 /**
@@ -64,7 +67,7 @@ body {
 /**
  * Media queries for different sizes of browser windows
  */
-@media (max-width: 700px) {
+@media (max-width: 1260px) {
   .icon-wrapper .description {
       display: none;
   }
@@ -75,18 +78,62 @@ body {
       max-width: 40px;
       float: right;
   }
+  #left-nav svg {
+      width: 2em;
+      height: 2em;
+  }
+  #left-nav {
+      padding-right: 0.5em;
+      padding-left: 2em;
+  }
+  .left-padding {
+      width: 0px;
+      flex-grow: 0;
+  }
 }
 
+/** The following media queries are used to make sure that the
+ * content is mostly in the center of the screen.
+ * ---[[[ START centering media queries ]]]---
+ */
+@media (min-width: 2000px){
+    .left-padding {
+        width: 15px;
+        flex-grow: 2;
+    }
+}
+
+
+@media (min-width: 1600px and max-width: 1999px){
+    .left-padding {
+        width: 15px;
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 1360px and max-width: 1599px){
+    #left-nav {
+        padding-left: 1em;
+    }
+    .left-padding {
+        width: 20px;
+        flex-grow: 1;
+    }
+
+}
+/**
+ * ---[[[ START centering media queries ]]]---
+ */
+
 .profile-image {
-    border-radius: 50%;
 }
 
 input {
-    background-color: var(--main-bg-color);
+    background-color: var(--main-background-color);
     color: var(--main-foreground-color);
     font-size: var(--tweet-font-size);
     padding: 1em 2em 1em 1em;
-    border: 1px solid red;
+    border: 0;
 }
 
 /**
@@ -119,20 +166,14 @@ a {
 .main-content {
     width: 100%;
     display: flex;
-    border: 3px dashed yellow;
     flex-grow: 2;
     flex-shrink: 1;
 }
-.left-padding {
-    display: flex;
-    width: 200px;
-    flex-shrink: 10;
-    flex-grow: 1;
-}
 .left-nav {
     flex-grow: 0;
-    border: 1px solid green;
+    flex-shrink: 500;
     display: flex;
+    border-right: 1px solid var(--main-foreground-color);
 }
 .center-column {
     max-width: var(--home-max-width);
@@ -147,10 +188,7 @@ a {
 }
 
 div {
-    color: white;
-}
-.tweet-visibility {
-    border: 1px solid green;
+    color: var(--main-foreground-color);
 }
 .tweet-visibility svg {
     filter: invert(100%) sepia(100%) hue-rotate(190deg) saturate(500%);
@@ -158,31 +196,74 @@ div {
     height: 20px;
 }
 .visibility-icon {
-    float: left;
     filter: invert(100%);
-    width: 20px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
+    padding-right: 1em;
 }
 
 .backdrop {
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 1024px;
-    width: 1024px;
-    opacity: 0.5;
-    background-color: black;
+    height: 3000%;
+    width: 3000%;
 }
 .selection:hover {
     cursor: pointer;
 }
+.selection {
+    display: grid;
+    grid-template-columns: 2em 1fr 1fr;
+    padding: 1em;
+}
 .visibility-popup {
     position: absolute;
     z-index: 1;
-    opacity: 1;
+    background-color: var(--main-background-color);
+    padding: 1em;
+    border: 1px solid var(--main-foreground-color);
+}
+.visibility-popup div.selection:hover {
+    filter: invert(5%);
+}
+.visibility-popup div.check-mark {
+    padding-left: 1em;
+}
+.visibility-popup img {
+    width: 1em;
+    filter: invert(100%);
+}
+
+.visibility-wrapper {
+    padding: 1em;
+}
+.profile-image-wrapper {
+    float: left;
+}
+.compose-tweet {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.compose-tweet div {
+}
+.tweet-options {
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    height: 2em;
+}
+.tweet-button {
+    background-color: var(--twitter-blue);
+    color: var(--main-foreground-color);
+    border-radius: 9999px;
+    font-size: 13px;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    min-width: 36px;
 }
 .active {
-    filter: invert(100%);
+    filter: invert(50%);
 }
 .nav-icon {
     width: 2em;
@@ -202,6 +283,13 @@ div {
 #left-nav div  {
     font-family: var(--twitter-chirp-font-family);
 }
+
+.icon-wrapper:hover {
+    cursor: pointer;
+    border-radius: 9999px;
+    background-color: var(--main-fade-color);
+}
+
 .icon-wrapper {
     display: grid;
     grid-template-columns: 2em 200px;
@@ -248,3 +336,36 @@ div.tweet-footer .red-hover:hover {
     color: rgb(231,36,128);
 }
 
+.tweet-from {
+
+}
+.tweet-username {
+    color: var(--main-fade-color);
+}
+.tweet-timestamp {
+    color: var(--main-fade-color);
+
+}
+.tweet-options {
+
+}
+
+.verified-badge {
+    width: 1em;
+    height: 1em;
+    filter: invert(100%);
+}
+
+.profile-image-wrapper img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.tweet-container {
+    display: grid;
+    grid-template-columns: 65px 1fr;
+}
+
+.tweet-elipses {
+    float: right;
+}
