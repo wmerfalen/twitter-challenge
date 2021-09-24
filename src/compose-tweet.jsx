@@ -4,6 +4,16 @@ import Tweet from './tweet.js';
 function ComposeTweet(){
     const [tweet,setTweet] = React.useState('');
     let content = React.useRef(null);
+    function appendRow(row){
+        let existing = window.localStorage.getItem('tweets');
+        if(!existing){
+            window.localStorage.setItem('tweets',JSON.stringify([row]));
+            return;
+        }
+        existing = JSON.parse(existing);
+        existing.push(row);
+        window.localStorage.setItem('tweets',JSON.stringify(existing));
+    }
     React.useEffect(() => {
         if(tweet === null || tweet.length === 0){
             return;
@@ -20,6 +30,7 @@ function ComposeTweet(){
             "retweets": 0,
             "hearts": 0,
         };
+        appendRow(row);
         ReactDOM.render(
             <Tweet tweet={row}/>,
             document.getElementById('newly-created-tweet').appendChild(div)

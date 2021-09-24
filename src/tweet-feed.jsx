@@ -2,7 +2,6 @@
 import Tweet from './tweet.js';
 
 function fetchTweets(){
-    console.log('fetch tweets');
     return new Promise(function (resolve, reject) {
         fetch('/public/twitter/dist/api/tweets.json').then(function(response){
             response.json().then(resolve).catch(reject);
@@ -10,10 +9,16 @@ function fetchTweets(){
     });
 }
 function TweetFeed(){
-    console.log('tweet feed');
     let tweets = [];
     fetchTweets().then(function(data){
-        for(let tweet of data){
+        let existing = window.localStorage.getItem('tweets');
+        let all = data
+        if(existing){
+            existing = JSON.parse(existing);
+            all = [...existing,...data];
+            all.sort(function(a,b){ return parseInt(b.timeStamp) - parseInt(a.timeStamp); });
+        }
+        for(let tweet of all){
             let div = document.createElement('div');
             div.classList.add('tweet');
             ReactDOM.render(

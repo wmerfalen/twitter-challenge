@@ -10,6 +10,16 @@ function ComposeTweet() {
         setTweet = _React$useState2[1];
 
     var content = React.useRef(null);
+    function appendRow(row) {
+        var existing = window.localStorage.getItem('tweets');
+        if (!existing) {
+            window.localStorage.setItem('tweets', JSON.stringify([row]));
+            return;
+        }
+        existing = JSON.parse(existing);
+        existing.push(row);
+        window.localStorage.setItem('tweets', JSON.stringify(existing));
+    }
     React.useEffect(function () {
         if (tweet === null || tweet.length === 0) {
             return;
@@ -26,6 +36,7 @@ function ComposeTweet() {
             "retweets": 0,
             "hearts": 0
         };
+        appendRow(row);
         ReactDOM.render(React.createElement(Tweet, { tweet: row }), document.getElementById('newly-created-tweet').appendChild(div));
         content.current.value = '';
     }, [tweet]);
