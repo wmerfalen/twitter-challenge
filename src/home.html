@@ -1,58 +1,145 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-    <meta charset="utf-8" />
+  <meta charset="utf-8" />
 
-    <head>
-        <title>Twitter. It's what's happening / Twitter</title>
-        <link rel="preload" href="/public/twitter/dist/assets/fonts/chirp-extended-heavy-web.woff"/>
-        <link rel="stylesheet" href="assets/css/home.css"/>
-        <link rel="stylesheet" href="assets/css/all.css"/>
-        <script src="/public/js/react.development.js"></script>
-        <script src="/public/js/react-dom.development.js"></script>
-        <script src="feed.js" type="module"></script>
-        <script src="visibility.js" type="module"></script>
-        <script src="login-tracker.js" type="module"></script>
-        <script src="left-nav.js" type="module"></script>
-        <script src="tweet-feed.js" type="module"></script>
-    </head>
-    <body>
-        <div id="home-app">
-            <div class="main-content">
-                <div class="left-padding"></div>
-                <div class="left-nav column" id="left-nav"></div>
-                <div class="center-column column">
-                    <div id="home">
-                        <div class="profile-image-wrapper">
-                            <img src="assets/img/me.jpg" class="profile-image"/>
-                        </div>
-                        <div class="compose-tweet">
-                            <div>
-                                <input type="text" name="tweet" placeholder="What's happening?"/>
-                            </div>
-                            <div>
-                                <div id="tweet-visibility"></div>
-                            </div>
-                            <div class="tweet-options">
-                                <div></div>
-                                <div>
-                                    <a class="tweet-button" href="javascript:void(0)">Tweet</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="create-tweet"></div>
-                    <div id="main-feed"></div>
-                    <div id="tweets"></div>
-                </div>
-                <div class="right-column column" id="news-feed">
-                    right column
-                    <div id="whats-happening"></div>
-                    <div id="who-to-follow"></div>
-                </div>
-                <div>
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"></path></g></svg>
-                </div>
+  <head>
+    <title>Twitter. It's what's happening / Twitter</title>
+    <link rel="preload" href="/public/twitter/dist/assets/fonts/chirp-extended-heavy-web.woff" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/css/all.css" />
+    <script src="/public/js/react.development.js"></script>
+    <script src="/public/js/react-dom.development.js"></script>
+    <script src="feed.js" type="module"></script>
+    <script src="visibility.js" type="module"></script>
+    <script src="login-tracker.js" type="module"></script>
+    <script src="left-nav.js" type="module"></script>
+    <script src="tweet-feed.js" type="module"></script>
+  </head>
+  <body>
+    <div id="home-app">
+      <div class="main-content">
+        <div class="left-padding"></div>
+        <div class="left-nav column" id="left-nav"></div>
+        <div class="center-column column">
+          <div id="home">
+            <div class="profile-image-wrapper">
+              <img src="assets/img/me.jpg" class="profile-image" />
             </div>
-            <div id="login-tracker"></div>
+            <div class="compose-tweet">
+              <div>
+                <input type="text" name="tweet" placeholder="What's happening?" />
+              </div>
+              <div>
+                <div id="tweet-visibility"></div>
+              </div>
+              <div class="tweet-options">
+                <div></div>
+                <div>
+                  <a class="tweet-button" href="javascript:void(0)">Tweet</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="create-tweet"></div>
+          <div id="main-feed"></div>
+          <div id="tweets"></div>
         </div>
-    </body></html>
+        <div class="right-column column" id="news-feed">
+          <div id="whats-happening">
+              <div>
+                <h3>What's happening</h3>
+              </div>
+              <div class="wh-entry">
+                  <div>
+                      <div>
+                        <span>World news · LIVE</span>
+                      </div>
+                      <div>
+                        <b class="heading">The UN General Assembly continues in New York</b>
+                      </div>
+                  </div>
+                  <div class="image-wrapper">
+                    <img src="assets/img/whats-happening/pbs.jpg"/>
+                  </div>
+              </div>
+              <div class="wh-entry">
+                  <div>
+                      <div>
+                        <span>COVID-19 · LIVE</span>
+                      </div>
+                      <div>
+                        <b class="heading">COVID-19: News and updates for Provo, Utah</b>
+                      </div>
+                  </div>
+                  <div class="image-wrapper">
+                    <img src="assets/img/whats-happening/covid.jpg"/>
+                  </div>
+              </div>
+              <div class="wh-entry">
+                  <div>
+                      <div>
+                        <span>Trending in United States</span>
+                      </div>
+                      <div>
+                        <b class="heading">#SomethingCool</b>
+                      </div>
+                  </div>
+                  <div class="image-wrapper">
+                    <img src="assets/img/whats-happening/pbs.jpg"/>
+                  </div>
+              </div>
+          </div>
+          <div id="who-to-follow">
+              <h3>Who to follow</h3>
+              <div class="wf-entry">
+                <div class="profile-pic">
+                    <img src="assets/img/who-to-follow/faraz.jpg"/>
+                </div>
+                <div class="profile-info">
+                    <b>faraz ahmad</b>
+                    <span>@farazamiruddin</span>
+                </div>
+                <div class="follow-button-wrapper">
+                    <button class="follow">Follow</button>
+                </div>
+              </div>
+              <div class="wf-entry">
+                <div class="profile-pic">
+                    <img src="assets/img/who-to-follow/camp.jpg"/>
+                </div>
+                <div class="profile-info">
+                    <b>Beyond Code Bootcamp</b>
+                    <span>@_beyondcode</span>
+                </div>
+                <div class="follow-button-wrapper">
+                    <button class="follow">Follow</button>
+                </div>
+              </div>
+              <div class="wf-entry">
+                <div class="profile-pic">
+                    <img src="assets/img/who-to-follow/fem.jpg"/>
+                </div>
+                <div class="profile-info">
+                    <b>Frontend Masters</b>
+                    <span>@FrontendMasters</span>
+                </div>
+                <div class="follow-button-wrapper">
+                    <button class="follow">Follow</button>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <g>
+              <path
+                d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
+              ></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div id="login-tracker"></div>
+    </div>
+  </body>
+</html>
