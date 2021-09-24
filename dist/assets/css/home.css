@@ -543,5 +543,6 @@ div.tweet-footer .red-hover:hover {
     float: right;
 }
 #newly-created-tweet {
-    border: 2px solid red;
+    display: flex;
+    flex-direction: column-reverse;
 }
