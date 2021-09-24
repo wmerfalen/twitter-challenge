@@ -126,6 +126,7 @@ function TweetVisibility() {
     }
     var everyoneSpan = React.useRef();
     function handleClick(event) {
+        event.preventDefault();
         var existing = document.getElementById(POPUP_ID);
         if (existing) {
             existing.remove();
@@ -153,7 +154,7 @@ function TweetVisibility() {
         { className: 'visibility-wrapper' },
         React.createElement(
             'a',
-            { href: 'javascript:void(0)', onClick: handleClick },
+            { onClick: handleClick },
             React.createElement(
                 'span',
                 { className: 'tweet-visibility' },
@@ -167,4 +168,4 @@ function TweetVisibility() {
         )
     );
 }
-ReactDOM.render(React.createElement(TweetVisibility, { initialState: 'everyone' }), document.getElementById('tweet-visibility'));
+export default TweetVisibility;

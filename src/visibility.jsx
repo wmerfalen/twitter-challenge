@@ -80,6 +80,7 @@ function TweetVisibility(){
     }
     const everyoneSpan = React.useRef();
     function handleClick(event) {
+        event.preventDefault();
         let existing = document.getElementById(POPUP_ID);
         if(existing){
             existing.remove();
@@ -107,7 +108,7 @@ function TweetVisibility(){
 
     return (
         <div className="visibility-wrapper">
-            <a href="javascript:void(0)" onClick={handleClick}>
+            <a onClick={handleClick}>
                 <span className="tweet-visibility">
                     <span ref={everyoneSpan}>
                         <img className="visibility-icon" src="assets/img/font-awesome-svgs/globe.svg"/>
@@ -118,7 +119,4 @@ function TweetVisibility(){
         </div>
     );
 }
-ReactDOM.render(
-    <TweetVisibility initialState="everyone"/>,
-    document.getElementById('tweet-visibility')
-);
+export default TweetVisibility;

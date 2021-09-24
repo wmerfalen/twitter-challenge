@@ -373,6 +373,10 @@ div {
 .visibility-wrapper {
     padding: 1em;
 }
+.visibility-wrapper a:hover {
+    cursor: pointer;
+}
+
 .profile-image-wrapper {
     float: left;
     padding-top: 1em;
@@ -537,4 +541,7 @@ div.tweet-footer .red-hover:hover {
     width: 1em;
     height: 1em;
     float: right;
+}
+#newly-created-tweet {
+    border: 2px solid red;
 }
