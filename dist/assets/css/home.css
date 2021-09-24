@@ -64,10 +64,15 @@ body {
  */
 
 
+@media (max-width: 800px){
+    .right-column {
+        display: none;
+    }
+}
 /**
  * Media queries for different sizes of browser windows
  */
-@media (max-width: 1260px) {
+@media (max-width: 1124px) {
   .icon-wrapper .description {
       display: none;
   }
@@ -92,35 +97,97 @@ body {
   }
 }
 
+@media (min-width: 1200px){
+    .left-padding {
+        width: 90px;
+        flex-grow: 0;
+    }
+
+}
+
+@media (min-width: 1500px){
+    .left-padding {
+        width: 110px;
+        flex-grow: 0;
+    }
+
+}
+
+@media (min-width: 1600px){
+    .left-padding {
+        width: 200px;
+        flex-grow: 0;
+    }
+}
+
+@media (min-width: 1700px){
+    .left-padding {
+        width: 320px;
+        flex-grow: 0;
+    }
+}
+@media (min-width: 1800px){
+    .left-padding {
+        width: 340px;
+        flex-grow: 0;
+    }
+}
+@media (min-width: 1900px){
+    .left-padding {
+        width: 380px;
+        flex-grow: 0;
+    }
+
+}
+
+
+
 /** The following media queries are used to make sure that the
  * content is mostly in the center of the screen.
  * ---[[[ START centering media queries ]]]---
  */
 @media (min-width: 2000px){
     .left-padding {
-        width: 15px;
-        flex-grow: 2;
+        width: 410px;
+        flex-grow: 0;
     }
 }
-
-
-@media (min-width: 1600px and max-width: 1999px){
+@media (min-width: 2180px){
     .left-padding {
-        width: 15px;
-        flex-grow: 1;
+        width: 600px;
+        flex-grow: 0;
     }
 }
 
-@media (min-width: 1360px and max-width: 1599px){
-    #left-nav {
-        padding-left: 1em;
-    }
+@media (min-width: 2280px){
     .left-padding {
-        width: 20px;
-        flex-grow: 1;
+        width: 620px;
+        flex-grow: 0;
     }
-
 }
+
+@media (min-width: 2400px){
+    .left-padding {
+        width: 820px;
+        flex-grow: 0;
+    }
+}
+
+@media (min-width: 2780px){
+    .left-padding {
+        width: 920px;
+        flex-grow: 0;
+    }
+}
+
+
+@media (min-width: 3000px){
+    .left-padding {
+        width: 980px;
+        flex-grow: 0;
+    }
+}
+
 /**
  * ---[[[ START centering media queries ]]]---
  */
