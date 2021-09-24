@@ -397,6 +397,9 @@ div {
 
 .compose-tweet div {
 }
+.compose-wrapper {
+    border-bottom: 1px solid var(--main-fade-color);
+}
 .tweet-options {
     display: grid;
     grid-template-columns: 80% 1fr;
@@ -470,6 +473,7 @@ div.tweet-container {
     padding: 1em;
     font-family: var(--twitter-chirp-font-family);
     font-size: 13px;
+    border-bottom: 1px solid var(--main-fade-color);
 }
 div.tweet-footer .blue-hover:hover {
     cursor: pointer;
