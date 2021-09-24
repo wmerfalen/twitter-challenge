@@ -183,7 +183,7 @@ body {
 
 @media (min-width: 3000px){
     .left-padding {
-        width: 980px;
+        width: 1280px;
         flex-grow: 0;
     }
 }
@@ -196,6 +196,8 @@ body {
 }
 
 input {
+    padding-top: 1em;
+    padding-left: 0.5em;
     background-color: var(--main-background-color);
     color: var(--main-foreground-color);
     font-size: var(--tweet-font-size);
@@ -211,6 +213,9 @@ input {
     width: 100%;
 }
 
+#home {
+    border-bottom: 1px solid var(--main-fade-color);
+}
 
 a:hover {
     text-decoration: none;
@@ -246,16 +251,19 @@ a {
     max-width: var(--home-max-width);
     flex-grow: 0;
     flex-shrink: 10;
+    border-right: 1px solid var(--main-fade-color);
 }
-/*
-.right-column {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-}
-*/
 #whats-happening {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1em 1fr 1fr 1fr;
+}
+.right-title {
+    margin-left: 1em;
+    font-family: var(--twitter-chirp-font-family);
+}
+.right-title h3 {
+    margin: 0px;
+    padding: 0px;
 }
 #whats-happening div.wh-entry {
     width: 280px;
@@ -267,10 +275,9 @@ a {
 #whats-happening .image-wrapper {
     float: right;
 }
-#whats-happening .image-wrapper img {
-    width: 80px;
-}
-.right-column div {
+.right-column {
+    padding-left: 1em;
+    padding-top: 1em;
 }
 
 #who-to-follow div.wf-entry {
@@ -310,6 +317,10 @@ button.follow {
     border-radius: 9999px;
     padding: 0.6em 1.2em;
     font-weight: bold;
+}
+button.follow:hover {
+    filter: invert(15%);
+    cursor: pointer;
 }
 div {
     color: var(--main-foreground-color);
@@ -364,10 +375,20 @@ div {
 }
 .profile-image-wrapper {
     float: left;
+    padding-top: 1em;
+    padding-left: 0.5em;
+}
+.image-wrapper img {
+    border-radius: 5px;
+    height: 60px;
+    width: 60px;
+    /*height: 3em;*/
 }
 .compose-tweet {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
+    padding-left: 1em;
+    margin-top: 1em;
 }
 
 .compose-tweet div {
@@ -491,5 +512,29 @@ div.tweet-footer .red-hover:hover {
 }
 
 .tweet-elipses {
+    float: right;
+}
+.tweet-elipses:hover {
+    cursor: pointer;
+}
+
+.center-column-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--main-fade-color);
+    padding-top: 1em;
+    padding-left: 0.8em;
+    border-right: 1px solid var(--main-fade-color);
+}
+.home-header span {
+    font-weight: bold;
+}
+.home-header {
+    margin-bottom: 1em;
+}
+.sparkly-thingy {
+    filter: invert(100%);
+    width: 1em;
+    height: 1em;
     float: right;
 }
