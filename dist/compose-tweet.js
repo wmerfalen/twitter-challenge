@@ -3,6 +3,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 import TweetVisibility from './visibility.js';
 import Tweet from './tweet.js';
 import LoginState from './login-tracker.js';
+import IdProvider from './id-provider.js';
 
 var VISIBILITY = 'visibility-preference';
 function ComposeTweet() {
@@ -29,6 +30,7 @@ function ComposeTweet() {
         var div = document.createElement('div');
 
         var row = {
+            id: IdProvider().next(),
             from: 'William Merfalen',
             userName: '@lmdbkraft',
             timeStamp: new Date().getTime(),

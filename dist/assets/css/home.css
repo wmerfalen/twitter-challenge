@@ -414,6 +414,9 @@ div {
     font-weight: bold;
     min-width: 36px;
 }
+.tweet-button:hover {
+    cursor: pointer;
+}
 .active {
     filter: invert(50%);
 }
@@ -486,7 +489,14 @@ div.tweet-footer .blue-hover:hover svg {
 
 div.tweet-footer .red-hover:hover {
     cursor: pointer;
-    color: rgb(231,36,128);
+    /*background-color: rgb(231,36,128);*/
+    filter: invert(20%);
+}
+.heart-counter:hover {
+    cursor: pointer;
+}
+.liked {
+    color: red;
 }
 
 .tweet-from {
@@ -596,4 +606,13 @@ div.tweet-footer .red-hover:hover {
     border-radius: 9px;
     color: var(--twitter-blue);
     padding: 0.7em;
+}
+#login-modal-wrapper {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 5000%;
+    height: 5000%;
+    background-color: black;
+    opacity: 0.8;
 }

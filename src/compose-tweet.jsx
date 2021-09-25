@@ -1,6 +1,7 @@
 import TweetVisibility from './visibility.js';
 import Tweet from './tweet.js';
 import LoginState from './login-tracker.js';
+import IdProvider from './id-provider.js';
 
 const VISIBILITY = 'visibility-preference';
 function ComposeTweet(){
@@ -23,6 +24,7 @@ function ComposeTweet(){
         let div = document.createElement('div');
 
         let row = {
+            id: IdProvider().next(),
             from: 'William Merfalen',
             userName: '@lmdbkraft',
             timeStamp: (new Date()).getTime(),

@@ -1,5 +1,6 @@
 
 import Tweet from './tweet.js';
+import IdProvider from './id-provider.js';
 
 function fetchTweets(){
     return new Promise(function (resolve, reject) {
