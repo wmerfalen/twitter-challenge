@@ -58,8 +58,8 @@ function Tweet(_ref) {
     function toggleLikes(in_tweet) {
         if (LoginState().isLoggedIn() === false) {
             console.log('not logged in');
-            //displayLoginModal();
-            //return;
+            displayLoginModal();
+            return;
         }
         Likes(in_tweet).toggle();
         document.getElementById(in_tweet.id + '-likes').innerText = in_tweet.hearts + Likes(in_tweet).get();

@@ -611,8 +611,67 @@ div.tweet-footer .red-hover:hover {
     position: absolute;
     left: 0px;
     top: 0px;
-    width: 5000%;
-    height: 5000%;
+    width: 100%;
+    height: 100%;
     background-color: black;
-    opacity: 0.8;
+}
+
+.login-popup {
+    background-color: var(--main-background-color);
+    color: var(--main-foreground-color);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--main-foreground-color);
+    border-radius: 15px;
+    padding: 0.5em;
+}
+.login-popup div.heart {
+    margin: 0 auto;
+    filter: invert(100%);
+    width: 3em;
+}
+.login-popup h1 {
+    padding-left: 1em;
+}
+.login-popup h1:hover {
+    cursor: pointer;
+}
+.login-popup .login-wrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+    margin-top: 1em;
+}
+.login-cta {
+    padding: 0em 3em;
+    margin-bottom: 4em;
+}
+.login-popup .login-wrapper .login-cta {
+}
+.login-popup .login-wrapper .container button {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 1em 0.5em;
+    border-radius: 18px;
+    font-weight: 800;
+}
+
+.login-popup .login-wrapper .container button.login {
+    background-color: var(--twitter-blue);
+    color: var(--main-foreground-color);
+}
+
+.login-popup .login-wrapper .container button.sign-up {
+    color: var(--twitter-blue);
+    background-color: var(--main-foreground-color);
+}
+
+.login-popup .login-wrapper .container button:hover {
+    cursor: pointer;
 }

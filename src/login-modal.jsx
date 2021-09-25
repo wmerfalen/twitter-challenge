@@ -1,25 +1,31 @@
 const POPUP_ID = 'tweet-login-popup';
 const BACKDROP_ID = 'tweet-login-backdrop';
-function FloatingVisibilityBox({wrapperId}){
-    const floatingStyle = {
-        left: '0px',
-        top: '0px',
-        position: 'absolute',
-    };
+const MODAL_WRAPPER_ID = 'login-modal-wrapper';
+function LoginPrompter({wrapperId}){
+    function dismiss(){
+        document.getElementById(MODAL_WRAPPER_ID).remove();
+    }
+    function gotoLogin(){
+        window.location.href= 'https://fluxkraft-os.net/public/twitter/dist/'
+    }
     return (
-    <div className="login-popup" style={floatingStyle}>
-        <h1>X</h1>
-        <div>Heart</div>
-        <h3>Like a tweet to share the love</h3>
-        <p className="description">
-            Join Twitter now to let William Merfalen know you like their Tweet.
-        </p>
-        <div className="selection" onClick={() => setVisibility('everyone')}>
-            <div>
-                <button className="login">Log in</button>
+    <div className="login-popup">
+        <h1 onClick={dismiss}>X</h1>
+        <div className="heart">
+<svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12z"></path></g></svg>
+        </div>
+        <div className="login-cta">
+            <h3>Like a tweet to share the love</h3>
+            <p className="cta">
+                Join Twitter now to let William Merfalen know you like their Tweet.
+            </p>
+        </div>
+        <div className="login-wrapper">
+            <div className="container">
+                <button className="login" onClick={gotoLogin}>Log in</button>
             </div>
-            <div>
-                <button className="sign-up">Sign up</button>
+            <div className="container">
+                <button className="sign-up" onClick={gotoLogin}>Sign up</button>
             </div>
         </div>
     </div>
@@ -67,6 +73,7 @@ function LoginModal(){
 
     return (
         <div>
+            <LoginPrompter wrapperId={POPUP_ID}/>
         </div>
     );
 }
