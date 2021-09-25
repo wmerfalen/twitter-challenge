@@ -26,6 +26,56 @@ function Tweet(_ref) {
             return date.toLocaleString("default", { year: "numeric", month: "short" });
         }
     }
+    function getLense(in_tweet) {
+        if (typeof in_tweet['lense'] !== 'undefined' && in_tweet['lense'] !== null) {
+            switch (in_tweet['lense']) {
+                default:
+                    return '';
+                case 'everyone':
+                    return '';
+                case 'mention':
+                    return React.createElement(
+                        "div",
+                        { className: "lense-wrapper" },
+                        React.createElement(
+                            "svg",
+                            { viewBox: "0 0 24 24", "aria-hidden": "true", className: "lense-icon" },
+                            React.createElement(
+                                "g",
+                                null,
+                                React.createElement("path", { d: "M17.23 8.6c0-.85-.69-1.55-1.55-1.55-.37 0-.73.14-1.02.39-.6-.45-1.54-.92-2.85-.92-2.97 0-5.12 2.45-5.12 5.84 0 2.62 1.88 4.75 4.19 4.75 1.42 0 2.48-.53 3.17-1.03.54.62 1.53 1.26 3.32 1.26.05 0 5.05-.06 5.05-5.34 0-5.75-4.67-10.42-10.42-10.42S1.58 6.25 1.58 12 6.25 22.42 12 22.42c2.18 0 3.92-.53 5.65-1.72.28-.19.48-.49.56-.86.06-.35-.01-.68-.21-.97-.19-.29-.5-.49-.85-.54-.36-.06-.72.01-.98.19-1.28.88-2.57 1.27-4.17 1.27-4.29 0-7.79-3.5-7.79-7.79S7.71 4.21 12 4.21s7.79 3.5 7.79 7.79c0 2.15-1.19 2.91-2.31 2.91 0 0-.68 0-.98-.35-.15-.17-.19-.45-.13-.82.86-4.96.86-5.06.86-5.14zm-3.5 2.53v.14c0 .73-.22 1.44-.63 2.02-.4.59-.95.91-1.6.94-1 0-1.67-.75-1.71-1.9-.03-.86.26-1.69.81-2.28.42-.45.96-.71 1.51-.73.95 0 1.57.7 1.62 1.81z" })
+                            )
+                        ),
+                        React.createElement(
+                            "span",
+                            { className: "desciption" },
+                            "You can reply to this conversation"
+                        )
+                    );
+                case 'follow':
+                    return React.createElement(
+                        "div",
+                        { className: "lense-wrapper" },
+                        React.createElement(
+                            "svg",
+                            { viewBox: "0 0 24 24", "aria-hidden": "true", className: "lense-icon" },
+                            React.createElement(
+                                "g",
+                                null,
+                                React.createElement("path", { d: "M14.893 22.5H4.213c-.69 0-1.3-.29-1.72-.82-.44-.56-.6-1.32-.42-2.05.87-3.68 4.25-5.82 8.23-5.82.47 0 .93.03 1.38.09-.11.08-.21.17-.31.26-1.31 1.23-1.37 3.29-.14 4.6l3.06 3.24c.18.19.38.36.6.5zm-4.59-10.42c-1.34 0-2.85-.15-3.81-1.25-.8-.92-1.06-2.35-.79-4.35.37-2.81 2.1-4.48 4.6-4.48 2.51 0 4.23 1.67 4.61 4.48.27 2.01.01 3.43-.8 4.36-.96 1.09-2.46 1.24-3.81 1.24z" }),
+                                React.createElement("path", { d: "M21.893 11.8l-4.22 8.51c-.06.12-.14.23-.24.32-.04.04-.09.08-.14.11-.03.02-.05.04-.08.05-.11.07-.23.11-.35.13-.06.01-.13.02-.2.02-.08 0-.17-.01-.25-.03-.08-.02-.16-.05-.23-.08-.06-.03-.11-.06-.16-.09-.06-.05-.12-.1-.18-.16l-.07-.07-3.02-3.2c-.43-.45-.4-1.18.05-1.6.45-.43 1.17-.41 1.6.04l1.97 2.09 3.49-7.04c.28-.56.96-.8 1.52-.51.55.27.78.96.51 1.51z" })
+                            )
+                        ),
+                        React.createElement(
+                            "span",
+                            { className: "desciption" },
+                            "You can reply to this conversation"
+                        )
+                    );
+            }
+        }
+        return '';
+    }
     function handleTweetOptions(event) {
         event.preventDefault();
     }
@@ -84,6 +134,11 @@ function Tweet(_ref) {
                 tweet.body
             ),
             React.createElement("div", { className: "preview-content" }),
+            React.createElement(
+                "div",
+                { className: "tweet-lense" },
+                getLense(tweet)
+            ),
             React.createElement(
                 "div",
                 { className: "tweet-footer" },

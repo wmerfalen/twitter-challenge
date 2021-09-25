@@ -12,7 +12,9 @@ function LeftNav(){
     const isLists = () => page === 'lists'; 
     const isProfile = () => page === 'profile';
     const isMore = () => page === 'more';
+    const isSettings = () => page === 'settings';
 
+    const loggedIn = window.localStorage.getItem('login-state') === 'logged-in';
 
     React.useEffect(() => {
 
@@ -21,15 +23,16 @@ function LeftNav(){
     });
     return (
         <div className="nav-wrapper">
-            <NavIcon type="twitter" clickHandler={setPage} active={isTwitter()}/>
-            <NavIcon type="home" clickHandler={setPage} active={isHome()}/>
-            <NavIcon type="messages" clickHandler={setPage} active={isMessages()}/>
-            <NavIcon type="explore" clickHandler={setPage} active={isExplore()}/>
-            <NavIcon type="notifications" clickHandler={setPage} active={isNotifications()}/>
-            <NavIcon type="bookmarks" clickHandler={setPage} active={isBookmarks()}/>
-            <NavIcon type="lists" clickHandler={setPage} active={isLists()}/>
-            <NavIcon type="profile" clickHandler={setPage} active={isProfile()}/>
-            <NavIcon type="more" clickHandler={setPage} active={isMore()}/>
+            <NavIcon loggedIn={loggedIn} type="twitter" clickHandler={setPage} active={isTwitter()}/>
+            <NavIcon loggedIn={loggedIn} type="home" clickHandler={setPage} active={isHome()}/>
+            <NavIcon loggedIn={loggedIn} type="messages" clickHandler={setPage} active={isMessages()}/>
+            <NavIcon loggedIn={loggedIn} type="explore" clickHandler={setPage} active={isExplore()}/>
+            <NavIcon loggedIn={loggedIn} type="notifications" clickHandler={setPage} active={isNotifications()}/>
+            <NavIcon loggedIn={loggedIn} type="bookmarks" clickHandler={setPage} active={isBookmarks()}/>
+            <NavIcon loggedIn={loggedIn} type="lists" clickHandler={setPage} active={isLists()}/>
+            <NavIcon loggedIn={loggedIn} type="profile" clickHandler={setPage} active={isProfile()}/>
+            <NavIcon loggedIn={loggedIn} type="more" clickHandler={setPage} active={isMore()}/>
+            <NavIcon loggedIn={loggedIn} type="settings" clickHandler={setPage} active={isSettings()}/>
         </div>
     );
 }

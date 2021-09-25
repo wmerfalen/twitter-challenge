@@ -35,6 +35,11 @@ function LeftNav() {
     var isMore = function isMore() {
         return page === 'more';
     };
+    var isSettings = function isSettings() {
+        return page === 'settings';
+    };
+
+    var loggedIn = window.localStorage.getItem('login-state') === 'logged-in';
 
     React.useEffect(function () {
 
@@ -44,15 +49,16 @@ function LeftNav() {
     return React.createElement(
         'div',
         { className: 'nav-wrapper' },
-        React.createElement(NavIcon, { type: 'twitter', clickHandler: setPage, active: isTwitter() }),
-        React.createElement(NavIcon, { type: 'home', clickHandler: setPage, active: isHome() }),
-        React.createElement(NavIcon, { type: 'messages', clickHandler: setPage, active: isMessages() }),
-        React.createElement(NavIcon, { type: 'explore', clickHandler: setPage, active: isExplore() }),
-        React.createElement(NavIcon, { type: 'notifications', clickHandler: setPage, active: isNotifications() }),
-        React.createElement(NavIcon, { type: 'bookmarks', clickHandler: setPage, active: isBookmarks() }),
-        React.createElement(NavIcon, { type: 'lists', clickHandler: setPage, active: isLists() }),
-        React.createElement(NavIcon, { type: 'profile', clickHandler: setPage, active: isProfile() }),
-        React.createElement(NavIcon, { type: 'more', clickHandler: setPage, active: isMore() })
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'twitter', clickHandler: setPage, active: isTwitter() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'home', clickHandler: setPage, active: isHome() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'messages', clickHandler: setPage, active: isMessages() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'explore', clickHandler: setPage, active: isExplore() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'notifications', clickHandler: setPage, active: isNotifications() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'bookmarks', clickHandler: setPage, active: isBookmarks() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'lists', clickHandler: setPage, active: isLists() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'profile', clickHandler: setPage, active: isProfile() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'more', clickHandler: setPage, active: isMore() }),
+        React.createElement(NavIcon, { loggedIn: loggedIn, type: 'settings', clickHandler: setPage, active: isSettings() })
     );
 }
 

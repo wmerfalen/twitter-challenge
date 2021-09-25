@@ -1,6 +1,8 @@
 import TweetVisibility from './visibility.js';
 import Tweet from './tweet.js';
+import LoginState from './login-tracker.js';
 
+const VISIBILITY = 'visibility-preference';
 function ComposeTweet(){
     const [tweet,setTweet] = React.useState('');
     let content = React.useRef(null);
@@ -29,6 +31,7 @@ function ComposeTweet(){
             "replyCount": 0,
             "retweets": 0,
             "hearts": 0,
+            lense: window.localStorage.getItem(VISIBILITY),
         };
         appendRow(row);
         ReactDOM.render(
@@ -37,6 +40,9 @@ function ComposeTweet(){
         );
         content.current.value='';
     },[tweet]);
+    if(LoginState().isLoggedIn() === false){
+        return (<div></div>);
+    }
     return (
         <div className="compose-wrapper">
           <div className="profile-image-wrapper">

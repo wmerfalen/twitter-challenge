@@ -2,7 +2,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 import TweetVisibility from './visibility.js';
 import Tweet from './tweet.js';
+import LoginState from './login-tracker.js';
 
+var VISIBILITY = 'visibility-preference';
 function ComposeTweet() {
     var _React$useState = React.useState(''),
         _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -34,12 +36,16 @@ function ComposeTweet() {
             "body": tweet,
             "replyCount": 0,
             "retweets": 0,
-            "hearts": 0
+            "hearts": 0,
+            lense: window.localStorage.getItem(VISIBILITY)
         };
         appendRow(row);
         ReactDOM.render(React.createElement(Tweet, { tweet: row }), document.getElementById('newly-created-tweet').appendChild(div));
         content.current.value = '';
     }, [tweet]);
+    if (LoginState().isLoggedIn() === false) {
+        return React.createElement('div', null);
+    }
     return React.createElement(
         'div',
         { className: 'compose-wrapper' },

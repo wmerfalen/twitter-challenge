@@ -379,7 +379,7 @@ div {
 
 .profile-image-wrapper {
     float: left;
-    padding-top: 1em;
+    padding-top: 0px;
     padding-left: 0.5em;
 }
 .image-wrapper img {
@@ -549,4 +549,51 @@ div.tweet-footer .red-hover:hover {
 #newly-created-tweet {
     display: flex;
     flex-direction: column-reverse;
+}
+.lense-icon {
+    width: 20px;
+    height: 20px;
+    background-color: var(--twitter-blue);
+    margin-right: 1em;
+    border-radius: 50%;
+}
+.hidden {
+    display:none;
+}
+.fixed-login-banner {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background-color: var(--twitter-blue);
+    color: var(--main-foreground-color);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 4fr 1fr;
+    padding-top: 1em;
+    padding-bottom: 0.7em;
+}
+.fixed-login-banner .dont-miss .dm-top {
+    font-size: 1.6em;
+}
+.fixed-login-banner .buttons {
+}
+.fixed-login-banner .buttons .login:hover {
+    cursor: pointer;
+}
+.fixed-login-banner .buttons .login {
+    border: 1px solid var(--main-foreground-color);
+    background-color: var(--twitter-blue);
+    border-radius: 9px;
+    color: white;
+    padding: 0.7em;
+    margin-right: 1em;
+}
+.fixed-login-banner .buttons .sign-up:hover {
+    cursor: pointer;
+}
+.fixed-login-banner .buttons .sign-up {
+    background-color: var(--main-foreground-color);
+    border-radius: 9px;
+    color: var(--twitter-blue);
+    padding: 0.7em;
 }
