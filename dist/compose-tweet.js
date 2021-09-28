@@ -5,14 +5,35 @@ import Tweet from './tweet.js';
 import LoginState from './login-tracker.js';
 import IdProvider from './id-provider.js';
 
+var MAX_TWEET_LENGTH = 280;
+var WARN_LENGTH = MAX_TWEET_LENGTH - 20;
 var VISIBILITY = 'visibility-preference';
 function ComposeTweet() {
+    /**
+     * State variables
+     */
     var _React$useState = React.useState(''),
         _React$useState2 = _slicedToArray(_React$useState, 2),
         tweet = _React$useState2[0],
         setTweet = _React$useState2[1];
 
+    var _React$useState3 = React.useState(true),
+        _React$useState4 = _slicedToArray(_React$useState3, 2),
+        canPublish = _React$useState4[0],
+        setCanPublish = _React$useState4[1];
+
+    /**
+     * References to html elements
+     */
+
+
     var content = React.useRef(null);
+    var lettersLeft = React.useRef(MAX_TWEET_LENGTH);
+    var publishButton = React.useRef(null);
+
+    /**
+     * Publish to the timeline
+     */
     function appendRow(row) {
         var existing = window.localStorage.getItem('tweets');
         if (!existing) {
@@ -23,8 +44,19 @@ function ComposeTweet() {
         existing.push(row);
         window.localStorage.setItem('tweets', JSON.stringify(existing));
     }
+
     React.useEffect(function () {
-        if (tweet === null || tweet.length === 0) {
+        if (canPublish === false) {
+            publishButton.current.classList.add('disabled');
+            return;
+        }
+        publishButton.current.classList.remove('disabled');
+    }, [tweet, canPublish]);
+    if (LoginState().isLoggedIn() === false) {
+        return React.createElement('div', null);
+    }
+    function publish() {
+        if (tweet === null || tweet.length === 0 || canPublish === false) {
             return;
         }
         var div = document.createElement('div');
@@ -44,9 +76,30 @@ function ComposeTweet() {
         appendRow(row);
         ReactDOM.render(React.createElement(Tweet, { tweet: row }), document.getElementById('newly-created-tweet').appendChild(div));
         content.current.value = '';
-    }, [tweet]);
-    if (LoginState().isLoggedIn() === false) {
-        return React.createElement('div', null);
+    }
+    function keyLogger() {
+        setTweet(content.current.value);
+        var len = content.current.value.length;
+        if (len >= WARN_LENGTH && len < MAX_TWEET_LENGTH) {
+            lettersLeft.current.classList.add('tweet-len-warning');
+            lettersLeft.current.classList.remove('tweet-len-overflow');
+            lettersLeft.current.innerText = MAX_TWEET_LENGTH - len;
+            setCanPublish(true);
+            return;
+        }
+        if (len >= MAX_TWEET_LENGTH) {
+            lettersLeft.current.classList.remove('tweet-len-warning');
+            lettersLeft.current.classList.add('tweet-len-overflow');
+            lettersLeft.current.innerText = MAX_TWEET_LENGTH - len;
+            if (len === MAX_TWEET_LENGTH) {
+                setCanPublish(true);
+                return;
+            }
+            setCanPublish(false);
+            return;
+        }
+        lettersLeft.current.innerText = '';
+        setCanPublish(true);
     }
     return React.createElement(
         'div',
@@ -62,7 +115,11 @@ function ComposeTweet() {
             React.createElement(
                 'div',
                 null,
-                React.createElement('input', { ref: content, type: 'text', name: 'tweet', placeholder: 'What\'s happening?' })
+                React.createElement('input', { ref: content, type: 'text', name: 'tweet', placeholder: 'What\'s happening?', onKeyUp: function onKeyUp() {
+                        return keyLogger();
+                    }, onKeyDown: function onKeyDown() {
+                        return keyLogger();
+                    } })
             ),
             React.createElement(
                 'div',
@@ -76,12 +133,15 @@ function ComposeTweet() {
                 React.createElement(
                     'div',
                     null,
+                    React.createElement('div', { ref: lettersLeft, className: 'letters-left' }),
                     React.createElement(
-                        'button',
-                        { className: 'tweet-button', onClick: function onClick() {
-                                return setTweet(content.current.value);
-                            } },
-                        'Tweet'
+                        'div',
+                        null,
+                        React.createElement(
+                            'button',
+                            { ref: publishButton, className: 'tweet-button', onClick: publish },
+                            'Tweet'
+                        )
                     )
                 )
             )

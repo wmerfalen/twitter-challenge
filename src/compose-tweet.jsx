@@ -3,10 +3,26 @@ import Tweet from './tweet.js';
 import LoginState from './login-tracker.js';
 import IdProvider from './id-provider.js';
 
+const MAX_TWEET_LENGTH = 280;
+const WARN_LENGTH = MAX_TWEET_LENGTH - 20;
 const VISIBILITY = 'visibility-preference';
 function ComposeTweet(){
+    /**
+     * State variables
+     */
     const [tweet,setTweet] = React.useState('');
+    const [canPublish,setCanPublish] = React.useState(true);
+
+    /**
+     * References to html elements
+     */
     let content = React.useRef(null);
+    let lettersLeft = React.useRef(MAX_TWEET_LENGTH);
+    let publishButton = React.useRef(null);
+
+    /**
+     * Publish to the timeline
+     */
     function appendRow(row){
         let existing = window.localStorage.getItem('tweets');
         if(!existing){
@@ -17,8 +33,19 @@ function ComposeTweet(){
         existing.push(row);
         window.localStorage.setItem('tweets',JSON.stringify(existing));
     }
+
     React.useEffect(() => {
-        if(tweet === null || tweet.length === 0){
+        if(canPublish === false){
+            publishButton.current.classList.add('disabled');
+            return;
+        }
+        publishButton.current.classList.remove('disabled');
+    },[tweet,canPublish]);
+    if(LoginState().isLoggedIn() === false){
+        return (<div></div>);
+    }
+    function publish(){
+        if(tweet === null || tweet.length === 0 || canPublish === false){
             return;
         }
         let div = document.createElement('div');
@@ -41,9 +68,30 @@ function ComposeTweet(){
             document.getElementById('newly-created-tweet').appendChild(div)
         );
         content.current.value='';
-    },[tweet]);
-    if(LoginState().isLoggedIn() === false){
-        return (<div></div>);
+    }
+    function keyLogger(){
+        setTweet(content.current.value);
+        const len = content.current.value.length;
+        if(len >= WARN_LENGTH && len < MAX_TWEET_LENGTH){
+            lettersLeft.current.classList.add('tweet-len-warning');
+            lettersLeft.current.classList.remove('tweet-len-overflow');
+            lettersLeft.current.innerText = MAX_TWEET_LENGTH - len;
+            setCanPublish(true);
+            return;
+        }
+        if(len >= MAX_TWEET_LENGTH){
+            lettersLeft.current.classList.remove('tweet-len-warning');
+            lettersLeft.current.classList.add('tweet-len-overflow');
+            lettersLeft.current.innerText = MAX_TWEET_LENGTH - len;
+            if(len === MAX_TWEET_LENGTH){
+                setCanPublish(true);
+                return;
+            }
+            setCanPublish(false);
+            return;
+        }
+        lettersLeft.current.innerText = '';
+        setCanPublish(true);
     }
     return (
         <div className="compose-wrapper">
@@ -52,7 +100,7 @@ function ComposeTweet(){
           </div>
           <div className="compose-tweet">
             <div>
-              <input ref={content} type="text" name="tweet" placeholder="What's happening?"/>
+              <input ref={content} type="text" name="tweet" placeholder="What's happening?" onKeyUp={() => keyLogger()} onKeyDown={() => keyLogger()}/>
             </div>
             <div>
               <TweetVisibility initialState="everyone"/>
@@ -60,7 +108,10 @@ function ComposeTweet(){
             <div className="tweet-options">
               <div></div>
               <div>
-                <button className="tweet-button" onClick={() => setTweet(content.current.value)}>Tweet</button>
+                <div ref={lettersLeft} className="letters-left"></div>
+                <div>
+                    <button ref={publishButton} className="tweet-button" onClick={publish}>Tweet</button>
+                </div>
               </div>
             </div>
           </div>

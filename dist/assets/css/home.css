@@ -26,6 +26,8 @@
     --existing-members-font-color: rgb(217, 217, 217);
     --twitter-chirp-font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --tweet-font-size: 13pt;
+    --tweet-len-warning-color: yellow;
+    --tweet-len-overflow-color: red;
     --twitter-blue: rgb(29, 155, 240);
     --home-max-width: 450px;
     --home-min-width: 550px;
@@ -402,7 +404,7 @@ div {
 }
 .tweet-options {
     display: grid;
-    grid-template-columns: 80% 1fr;
+    grid-template-columns: 70% 1fr;
     height: 2em;
 }
 .tweet-button {
@@ -674,4 +676,18 @@ div.tweet-footer .red-hover:hover {
 
 .login-popup .login-wrapper .container button:hover {
     cursor: pointer;
+}
+.tweet-len-warning {
+    color: var(--tweet-len-warning-color);
+}
+.tweet-len-overflow {
+    color: var(--tweet-len-overflow-color);
+}
+
+button.disabled:hover {
+    cursor: not-allowed;
+}
+.tweet-body {
+    inline-size: 280px;
+    overflow-wrap: break-word;
 }
