@@ -21,6 +21,9 @@ function ComposeTweet(){
     let lettersLeft = React.useRef(MAX_TWEET_LENGTH);
     let publishButton = React.useRef(null);
 
+    function placePlaceholderText(){
+        content.current.innerHTML = "<span class='wh-placeholder'>What's happening?</span>";
+    }
     /**
      * Publish to the timeline
      */
@@ -37,7 +40,7 @@ function ComposeTweet(){
 
     React.useEffect(() => {
         if(tweet.length === 0 && currentlyEditing === false){
-            content.current.innerText = "What's happening?";
+            placePlaceholderText();
         }
         if(canPublish === false){
             publishButton.current.classList.add('disabled');
@@ -71,7 +74,7 @@ function ComposeTweet(){
             <Tweet tweet={row}/>,
             document.getElementById('newly-created-tweet').appendChild(div)
         );
-        content.current.innerText = "What's happening?";
+        placePlaceholderText();
     }
     function keyLogger(){
         setTweet(content.current.innerText);
@@ -107,7 +110,7 @@ function ComposeTweet(){
     function forcePlaceholderOff(){
         setCurrentlyEditing(false);
         if(tweet.length === 0){
-            content.current.innerHTML = "What's happening?";
+            placePlaceholderText();
         }
     }
     return (
