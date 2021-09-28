@@ -691,3 +691,7 @@ button.disabled:hover {
     inline-size: 280px;
     overflow-wrap: break-word;
 }
+#loading-div {
+    display: flex;
+    justify-content: center;
+}

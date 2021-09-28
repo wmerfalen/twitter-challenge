@@ -10,20 +10,29 @@ function fetchTweets() {
         }).catch(reject);
     });
 }
-function TweetFeed() {
+function TweetFeed(_ref) {
+    var setLoadingStatus = _ref.setLoadingStatus,
+        messageId = _ref.messageId;
+
     var tweets = [];
     var feed = document.getElementById('main-feed');
     var div = document.createElement('div');
-    var img = document.createElement('img');
-    img.src = 'assets/img/loading.gif';
+    var loadingMessage = document.createElement('h4');
+    loadingMessage.id = messageId;
+
+    setLoadingStatus('Loading...');
 
     var LOADING_DIV = 'loading-div';
     div.id = LOADING_DIV;
     div.classList.add('loading');
-    div.appendChild(img);
+    div.appendChild(loadingMessage);
+
     feed.appendChild(div);
+    setLoadingStatus('Grabbing content...');
     setTimeout(function () {
+        setLoadingStatus('Loading server data...');
         fetchTweets().then(function (data) {
+            setLoadingStatus('Server data fetched. Rendering content...');
             var existing = window.localStorage.getItem('tweets');
             var all = data;
             if (existing) {
@@ -61,17 +70,20 @@ function TweetFeed() {
             }
 
             div.remove();
-        }).catch(console.error);
+            setLoadingStatus('Done.');
+        }).catch(function (issue) {
+            console.error({ issue: issue });
+            setLoadingStatus('Issue loading content. Contact support. <a href="mailto:support@fluxkraft-os.net">support@fluxkraft-os.net</a>');
+        });
     }, 1000);
-    return React.createElement(
-        'div',
-        null,
-        React.createElement(
-            'b',
-            null,
-            'Tweet feed'
-        )
-    );
+    return React.createElement('div', null);
 }
 
-ReactDOM.render(React.createElement(TweetFeed, null), document.getElementById('tweets'));
+var LOADING_STATUS_MESSAGE_ID = 'loading-status-message';
+function setStatus(status) {
+    var div = document.getElementById(LOADING_STATUS_MESSAGE_ID);
+    if (div) {
+        div.innerText = status;
+    }
+}
+ReactDOM.render(React.createElement(TweetFeed, { setLoadingStatus: setStatus, messageId: LOADING_STATUS_MESSAGE_ID }), document.getElementById('tweets'));

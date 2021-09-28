@@ -9,20 +9,26 @@ function fetchTweets(){
         }).catch(reject);
     });
 }
-function TweetFeed(){
+function TweetFeed({setLoadingStatus,messageId}){
     let tweets = [];
     const feed = document.getElementById('main-feed');
     let div = document.createElement('div');
-    let img = document.createElement('img');
-    img.src = 'assets/img/loading.gif';
+    let loadingMessage = document.createElement('h4');
+    loadingMessage.id = messageId;
+
+    setLoadingStatus('Loading...');
 
     const LOADING_DIV = 'loading-div';
     div.id = LOADING_DIV;
     div.classList.add('loading');
-    div.appendChild(img);
+    div.appendChild(loadingMessage);
+
     feed.appendChild(div);
+    setLoadingStatus('Grabbing content...');
     setTimeout(function(){
+        setLoadingStatus('Loading server data...');
         fetchTweets().then(function(data){
+            setLoadingStatus('Server data fetched. Rendering content...');
             let existing = window.localStorage.getItem('tweets');
             let all = data
             if(existing){
@@ -39,16 +45,25 @@ function TweetFeed(){
                 );
             }
             div.remove();
-        }).catch(console.error);
+            setLoadingStatus('Done.');
+        }).catch(function (issue) {
+            console.error({issue});
+            setLoadingStatus('Issue loading content. Contact support. <a href="mailto:support@fluxkraft-os.net">support@fluxkraft-os.net</a>');
+        });
     }, 1000);
     return (
-        <div>
-            <b>Tweet feed</b>
-        </div>
+        <div></div>
     );
 }
 
+const LOADING_STATUS_MESSAGE_ID = 'loading-status-message';
+function setStatus(status){
+    let div = document.getElementById(LOADING_STATUS_MESSAGE_ID);
+    if(div){
+        div.innerText = status;
+    }
+}
 ReactDOM.render(
-    <TweetFeed/>,
+    <TweetFeed setLoadingStatus={setStatus} messageId={LOADING_STATUS_MESSAGE_ID}/>,
     document.getElementById('tweets')
 );
