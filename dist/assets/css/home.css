@@ -713,6 +713,9 @@ div.tweet-footer .red-hover:hover {
     color: var(--tweet-len-overflow-color);
 }
 
+button.disabled {
+    opacity: 0.6;
+}
 button.disabled:hover {
     cursor: not-allowed;
 }
