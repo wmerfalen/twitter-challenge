@@ -504,6 +504,20 @@ div.tweet-footer .blue-hover:hover svg {
     color: var(--tos-link-color);
 }
 
+.blue-hover svg {
+    float: left;
+}
+.blue-hover div {
+    float: left;
+}
+.red-hover svg {
+    float: left;
+}
+.red-hover div {
+    float: left;
+}
+    
+
 div.tweet-footer .red-hover:hover {
     cursor: pointer;
     /*background-color: rgb(231,36,128);*/
