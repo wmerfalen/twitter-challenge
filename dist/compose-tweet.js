@@ -22,6 +22,11 @@ function ComposeTweet() {
         canPublish = _React$useState4[0],
         setCanPublish = _React$useState4[1];
 
+    var _React$useState5 = React.useState(false),
+        _React$useState6 = _slicedToArray(_React$useState5, 2),
+        currentlyEditing = _React$useState6[0],
+        setCurrentlyEditing = _React$useState6[1];
+
     /**
      * References to html elements
      */
@@ -46,6 +51,9 @@ function ComposeTweet() {
     }
 
     React.useEffect(function () {
+        if (tweet.length === 0 && currentlyEditing === false) {
+            content.current.innerText = "What's happening?";
+        }
         if (canPublish === false) {
             publishButton.current.classList.add('disabled');
             return;
@@ -75,11 +83,12 @@ function ComposeTweet() {
         };
         appendRow(row);
         ReactDOM.render(React.createElement(Tweet, { tweet: row }), document.getElementById('newly-created-tweet').appendChild(div));
-        content.current.value = '';
+        content.current.innerText = "What's happening?";
     }
     function keyLogger() {
-        setTweet(content.current.value);
-        var len = content.current.value.length;
+        setTweet(content.current.innerText);
+        setCurrentlyEditing(true);
+        var len = content.current.innerText.length;
         if (len >= WARN_LENGTH && len < MAX_TWEET_LENGTH) {
             lettersLeft.current.classList.add('tweet-len-warning');
             lettersLeft.current.classList.remove('tweet-len-overflow');
@@ -101,6 +110,18 @@ function ComposeTweet() {
         lettersLeft.current.innerText = '';
         setCanPublish(true);
     }
+    function togglePlaceholder() {
+        if (tweet.length === 0) {
+            setCurrentlyEditing(false);
+            content.current.innerHTML = '';
+        }
+    }
+    function forcePlaceholderOff() {
+        setCurrentlyEditing(false);
+        if (tweet.length === 0) {
+            content.current.innerHTML = "What's happening?";
+        }
+    }
     return React.createElement(
         'div',
         { className: 'compose-wrapper' },
@@ -115,11 +136,11 @@ function ComposeTweet() {
             React.createElement(
                 'div',
                 null,
-                React.createElement('input', { ref: content, type: 'text', name: 'tweet', placeholder: 'What\'s happening?', onKeyUp: function onKeyUp() {
+                React.createElement('div', { contentEditable: true, ref: content, type: 'text', name: 'tweet', onKeyUp: function onKeyUp() {
                         return keyLogger();
                     }, onKeyDown: function onKeyDown() {
                         return keyLogger();
-                    } })
+                    }, onFocus: togglePlaceholder, onClick: togglePlaceholder, onBlur: forcePlaceholderOff })
             ),
             React.createElement(
                 'div',
@@ -132,7 +153,7 @@ function ComposeTweet() {
                 React.createElement('div', null),
                 React.createElement(
                     'div',
-                    null,
+                    { id: 'tweet-button-wrapper' },
                     React.createElement('div', { ref: lettersLeft, className: 'letters-left' }),
                     React.createElement(
                         'div',

@@ -12,6 +12,7 @@ function ComposeTweet(){
      */
     const [tweet,setTweet] = React.useState('');
     const [canPublish,setCanPublish] = React.useState(true);
+    const [currentlyEditing,setCurrentlyEditing] = React.useState(false);
 
     /**
      * References to html elements
@@ -35,6 +36,9 @@ function ComposeTweet(){
     }
 
     React.useEffect(() => {
+        if(tweet.length === 0 && currentlyEditing === false){
+            content.current.innerText = "What's happening?";
+        }
         if(canPublish === false){
             publishButton.current.classList.add('disabled');
             return;
@@ -67,11 +71,12 @@ function ComposeTweet(){
             <Tweet tweet={row}/>,
             document.getElementById('newly-created-tweet').appendChild(div)
         );
-        content.current.value='';
+        content.current.innerText = "What's happening?";
     }
     function keyLogger(){
-        setTweet(content.current.value);
-        const len = content.current.value.length;
+        setTweet(content.current.innerText);
+        setCurrentlyEditing(true);
+        const len = content.current.innerText.length;
         if(len >= WARN_LENGTH && len < MAX_TWEET_LENGTH){
             lettersLeft.current.classList.add('tweet-len-warning');
             lettersLeft.current.classList.remove('tweet-len-overflow');
@@ -93,6 +98,18 @@ function ComposeTweet(){
         lettersLeft.current.innerText = '';
         setCanPublish(true);
     }
+    function togglePlaceholder(){
+        if(tweet.length === 0){
+            setCurrentlyEditing(false);
+            content.current.innerHTML = '';
+        }
+    }
+    function forcePlaceholderOff(){
+        setCurrentlyEditing(false);
+        if(tweet.length === 0){
+            content.current.innerHTML = "What's happening?";
+        }
+    }
     return (
         <div className="compose-wrapper">
           <div className="profile-image-wrapper">
@@ -100,14 +117,14 @@ function ComposeTweet(){
           </div>
           <div className="compose-tweet">
             <div>
-              <input ref={content} type="text" name="tweet" placeholder="What's happening?" onKeyUp={() => keyLogger()} onKeyDown={() => keyLogger()}/>
+              <div contentEditable ref={content} type="text" name="tweet" onKeyUp={() => keyLogger()} onKeyDown={() => keyLogger()} onFocus={togglePlaceholder} onClick={togglePlaceholder} onBlur={forcePlaceholderOff}></div>
             </div>
             <div>
               <TweetVisibility initialState="everyone"/>
             </div>
             <div className="tweet-options">
               <div></div>
-              <div>
+              <div id="tweet-button-wrapper">
                 <div ref={lettersLeft} className="letters-left"></div>
                 <div>
                     <button ref={publishButton} className="tweet-button" onClick={publish}>Tweet</button>

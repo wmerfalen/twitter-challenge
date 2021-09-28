@@ -25,12 +25,12 @@
     --sso-link-line-height: 20px;
     --existing-members-font-color: rgb(217, 217, 217);
     --twitter-chirp-font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --tweet-body-compensation-width: 500px;
     --tweet-font-size: 13pt;
     --tweet-len-warning-color: yellow;
     --tweet-len-overflow-color: red;
     --twitter-blue: rgb(29, 155, 240);
-    --home-max-width: 450px;
-    --home-min-width: 550px;
+    --home-max-width: 600px;
 }
 /** 
  * Custom font faces
@@ -197,14 +197,21 @@ body {
 .profile-image {
 }
 
-input {
-    padding-top: 1em;
-    padding-left: 0.5em;
+div[contenteditable] {
     background-color: var(--main-background-color);
     color: var(--main-foreground-color);
     font-size: var(--tweet-font-size);
     padding: 1em 2em 1em 1em;
-    border: 0;
+    border: none;
+    box-sizing: border-box;
+    width: 97%;
+    word-wrap: break-word;
+    word-break: break-all;
+    outline: none;
+}
+
+div[contenteditable]:focus {
+    outline: none;
 }
 
 /**
@@ -251,6 +258,7 @@ a {
 }
 .center-column {
     max-width: var(--home-max-width);
+    min-width: var(--home-max-width);
     flex-grow: 0;
     flex-shrink: 10;
     border-right: 1px solid var(--main-fade-color);
@@ -392,19 +400,24 @@ div {
 }
 .compose-tweet {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
     padding-left: 1em;
     margin-top: 1em;
 }
-
-.compose-tweet div {
+#tweet-button-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
+.letters-left {
+    padding-right: 1em;
+}
+
 .compose-wrapper {
     border-bottom: 1px solid var(--main-fade-color);
 }
 .tweet-options {
     display: grid;
-    grid-template-columns: 70% 1fr;
+    grid-template-columns: 6fr 1fr;
     height: 2em;
 }
 .tweet-button {
@@ -413,8 +426,10 @@ div {
     border-radius: 9999px;
     font-size: 13px;
     padding: 0.5em 1em;
+    margin: 0em 1em;
     font-weight: bold;
     min-width: 36px;
+    border: none;
 }
 .tweet-button:hover {
     cursor: pointer;
@@ -688,7 +703,7 @@ button.disabled:hover {
     cursor: not-allowed;
 }
 .tweet-body {
-    inline-size: 280px;
+    inline-size: var(--tweet-body-compensation-width);
     overflow-wrap: break-word;
 }
 #loading-div {
