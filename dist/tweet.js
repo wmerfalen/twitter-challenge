@@ -25,8 +25,144 @@ function Likes(tweet) {
         }
     };
 }
-function Tweet(_ref) {
-    var tweet = _ref.tweet;
+var FLOATING_PROFILE_DIV = 'floating-profile-div';
+var BACKDROP_ID = 'floating-profile-backdrop';
+var currentlyShowing = null;
+var close = true;
+function debounce(func, delay) {
+    var debounceTimer = void 0;
+    return function () {
+        var context = this;
+        var args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+            return func.apply(context, args);
+        }, delay);
+    };
+}
+function closeFloatingProfileDiv() {
+    if (!close) {
+        return;
+    }
+    var existing = document.getElementById(FLOATING_PROFILE_DIV);
+    if (existing) {
+        existing.remove();
+    }
+    currentlyShowing = null;
+}
+function FloatingProfile(_ref) {
+    var left = _ref.left,
+        top = _ref.top,
+        tweet = _ref.tweet;
+
+    var floatingStyle = {
+        position: 'absolute',
+        left: left - 80 + 'px',
+        top: top + 20 + 'px'
+    };
+    function getUserProfilePic(tweet) {
+        return 'assets/img/users/' + tweet.userName.replace(/@/, '').toLowerCase() + '.jpg';
+    }
+    function mouseOverFloatingDiv() {
+        close = false;
+    }
+    var mouseLeftFloatingDiv = debounce(function () {
+        close = true;
+        closeFloatingProfileDiv();
+    }, 1000);
+    return React.createElement(
+        'span',
+        { className: 'floating-profile', style: floatingStyle, onMouseOver: mouseOverFloatingDiv, onMouseLeave: mouseLeftFloatingDiv },
+        React.createElement(
+            'div',
+            { className: 'header' },
+            React.createElement(
+                'div',
+                null,
+                React.createElement('img', { src: getUserProfilePic(tweet) })
+            ),
+            React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'div',
+                    { className: 'following-status' },
+                    React.createElement(
+                        'b',
+                        null,
+                        'Following'
+                    )
+                )
+            )
+        ),
+        React.createElement(
+            'div',
+            { className: 'profile-description' },
+            React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'h4',
+                    null,
+                    tweet.name
+                )
+            ),
+            React.createElement(
+                'div',
+                null,
+                tweet.userName
+            ),
+            React.createElement(
+                'div',
+                null,
+                'Doing things is what I do'
+            ),
+            React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'div',
+                    { className: 'following' },
+                    React.createElement(
+                        'b',
+                        null,
+                        '321'
+                    ),
+                    React.createElement(
+                        'span',
+                        null,
+                        'Following'
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'followers' },
+                    React.createElement(
+                        'b',
+                        null,
+                        '321'
+                    ),
+                    React.createElement(
+                        'span',
+                        null,
+                        'Followers'
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'div',
+                    null,
+                    'Followed by .... '
+                )
+            )
+        )
+    );
+}
+function Tweet(_ref2) {
+    var tweet = _ref2.tweet;
 
     function displayLoginModal() {
         var div = document.createElement('div');
@@ -57,7 +193,6 @@ function Tweet(_ref) {
     }
     function toggleLikes(in_tweet) {
         if (LoginState().isLoggedIn() === false) {
-            console.log('not logged in');
             displayLoginModal();
             return;
         }
@@ -136,22 +271,60 @@ function Tweet(_ref) {
         var user = tweet.userName.toLowerCase().replace('@', '').replace(/[^a-z0-9_]+/, '');
         return 'assets/img/users/' + user + '.jpg';
     }
+    function closeModals() {
+        var popup = document.getElementById(FLOATING_PROFILE_DIV);
+        if (popup) {
+            popup.remove();
+        }
+        //let backdrop = document.getElementById(BACKDROP_ID);
+        //if(backdrop){
+        //    backdrop.remove();
+        //}
+    }
+    var everyoneSpan = React.useRef();
+    var profilePreview = debounce(function (which_tweet, left, top) {
+        if (currentlyShowing && currentlyShowing.userName === tweet.userName) {
+            return;
+        }
+        currentlyShowing = tweet;
+        var existing = document.getElementById(FLOATING_PROFILE_DIV);
+        if (existing) {
+            existing.remove();
+        }
+
+        var div = document.createElement('div');
+        div.id = FLOATING_PROFILE_DIV;
+
+        ReactDOM.render(React.createElement(FloatingProfile, { left: left, top: top, tweet: which_tweet }), document.body.appendChild(div));
+    }, 1000);
+
+    var removeProfilePreview = debounce(function (which_tweet) {
+        closeFloatingProfileDiv();
+    }, 1000);
+
     return React.createElement(
         'div',
         { className: 'tweet-container' },
         React.createElement(
             'div',
-            { className: 'profile-image-wrapper' },
+            { className: 'profile-image-wrapper hover-cursor', onMouseOver: function onMouseOver(event) {
+                    return profilePreview(tweet, event.pageX, event.pageY);
+                }, onMouseLeave: function onMouseLeave() {
+                    return removeProfilePreview(tweet);
+                } },
             React.createElement('img', { src: profilePic(tweet) })
         ),
         React.createElement(
             'div',
-            { className: 'tweet-content' },
+            { className: 'tweet-content hover-cursor' },
             React.createElement(
                 'b',
-                { className: 'tweet-from' },
-                tweet.from,
-                ' '
+                { className: 'tweet-from', onMouseOver: function onMouseOver(event) {
+                        return profilePreview(tweet, event.pageX, event.pageY);
+                    }, onMouseLeave: function onMouseLeave() {
+                        return removeProfilePreview(tweet);
+                    } },
+                tweet.from
             ),
             React.createElement(
                 'svg',
@@ -164,10 +337,12 @@ function Tweet(_ref) {
             ),
             React.createElement(
                 'span',
-                { className: 'tweet-username' },
-                ' ',
-                tweet.userName,
-                ' '
+                { className: 'tweet-username', onMouseOver: function onMouseOver() {
+                        return profilePreview(tweet);
+                    }, onMouseLeave: function onMouseLeave() {
+                        return removeProfilePreview(tweet);
+                    } },
+                tweet.userName
             ),
             React.createElement(
                 'span',

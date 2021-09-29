@@ -731,3 +731,12 @@ button.disabled:hover {
     font-size: 20px;
     opacity: 0.7;
 }
+.floating-profile {
+    background-color: var(--main-background-color);
+    border-radius: 10px;
+    border: 1px solid var(--main-foreground-color);
+ }
+
+ .hover-cursor:hover {
+     cursor: pointer;
+ }
