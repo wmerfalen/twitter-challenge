@@ -1,68 +1,22 @@
 import ComposeTweet from './compose-tweet.js';
 import Tweet from './tweet.js';
 
-const floatingStyle = {
-    position: 'absolute',
-    left: '0px',
-    top: '0px',
-};
-function FloatingReplyBox({tweet}){
-    return (
-    <span className="floater-popup" style={floatingStyle}>
-        <div className="floater-selection">
-            <div>
-                <img className="floater-icon" src="assets/img/font-awesome-svgs/lock.svg"/>
-            </div>
-            <div>
-                Only people you mention
-            </div>
-        </div>
-    </span>
-    );
-}
+const FLOATING_REPLY_DIV = 'floating-reply-div';
 function FloatingReply({for_tweet}){
-    function closeModals(){
-        let popup = document.getElementById(POPUP_ID);
+    function dismiss(){
+        let popup = document.getElementById(FLOATING_REPLY_DIV);
         if(popup){
             popup.remove();
         }
-        let backdrop = document.getElementById(BACKDROP_ID);
-        if(backdrop){
-            backdrop.remove();
-        }
-    }
-    const everyoneSpan = React.useRef();
-    function handleClick(event) {
-        event.preventDefault();
-        let existing = document.getElementById(POPUP_ID);
-        if(existing){
-            existing.remove();
-        }
-        existing = document.getElementById(BACKDROP_ID);
-        if(existing){
-            existing.remove();
-        }
-        let div = document.createElement('div')
-        div.id = BACKDROP_ID;
-        div.classList.add('backdrop');
-        div.onclick = closeModals;
-        document.body.appendChild(div);
-
-        div = document.createElement('div');
-        div.id = POPUP_ID;
-        div.classList.remove('backdrop');
-        div.onclick = closeModals;
-
-        ReactDOM.render(
-            <FloatingReplyBox/>,
-            document.body.appendChild(div)
-        );
     }
 
     return (
-        <div className="floater-wrapper" style={floatingStyle}>
+        <div className="floater-wrapper">
+            <div className="header">
+                <h1 className="dismiss" onClick={dismiss}>X</h1>
+            </div>
             <div className="tweet">
-                <Tweet tweet={for_tweet}/>
+                <Tweet tweet={for_tweet} floating={true}/>
             </div>
             <div className="compose-tweet-wrapper">
                 <ComposeTweet floating={true}/>

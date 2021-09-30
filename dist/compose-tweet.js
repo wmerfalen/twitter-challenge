@@ -8,10 +8,24 @@ import IdProvider from './id-provider.js';
 var MAX_TWEET_LENGTH = 280;
 var WARN_LENGTH = MAX_TWEET_LENGTH - 20;
 var VISIBILITY = 'visibility-preference';
-function ComposeTweet() {
+var FLOATING_REPLY_DIV = 'floating-reply-div';
+
+function extract(obj, name) {
+    var fallbackValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    if (typeof obj[name] !== 'undefined') {
+        return obj[name];
+    }
+    return fallbackValue;
+}
+function ComposeTweet(props) {
+    var floating = extract(props, 'floating', false);
+    var originalTweet = extract(props, 'originalTweet', null);
+
     /**
      * State variables
      */
+
     var _React$useState = React.useState(''),
         _React$useState2 = _slicedToArray(_React$useState, 2),
         tweet = _React$useState2[0],
@@ -92,9 +106,18 @@ function ComposeTweet() {
             "hearts": 0,
             lense: window.localStorage.getItem(VISIBILITY)
         };
+        if (originalTweet) {
+            row.contentType = ['reply', originalTweet.id].join('|');
+        }
         appendRow(row);
         ReactDOM.render(React.createElement(Tweet, { tweet: row }), document.getElementById('newly-created-tweet').appendChild(div));
         placePlaceholderText();
+        if (floating) {
+            var floater = document.getElementById(FLOATING_REPLY_DIV);
+            if (floater) {
+                floater.remove();
+            }
+        }
     }
     function keyLogger() {
         setTweet(content.current.innerText);
@@ -156,7 +179,7 @@ function ComposeTweet() {
             React.createElement(
                 'div',
                 null,
-                React.createElement(TweetVisibility, { initialState: 'everyone' })
+                floating ? '' : React.createElement(TweetVisibility, { initialState: 'everyone' })
             ),
             React.createElement(
                 'div',

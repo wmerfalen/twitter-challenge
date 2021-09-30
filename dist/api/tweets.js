@@ -10,8 +10,10 @@ function sort() {
 
 let primary_key = 0;
 function addEntry(from, userName, timeStamp, body, replyCount, retweets, hearts, contentType, retweeter) {
-  tweets.push({ id: ++primary_key,from, userName, timeStamp, body, replyCount, retweets, hearts, contentType, retweeter });
+  const row = { id: ++primary_key,from, userName, timeStamp, body, replyCount, retweets, hearts, contentType, retweeter };
+  tweets.push(row);
   sort();
+  return row;
 }
 const WORDS = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elit quam, dapibus et odio at, bibendum tristique lectus. Pellentesque ante tellus, tincidunt ac tempus et, maximus at turpis. Donec vel lacinia libero. Vestibulum viverra ac justo vel convallis. Ut auctor nibh ac dolor pulvinar posuere. Mauris tortor enim, tempor vitae lacus vel, pellentesque luctus ligula. Donec accumsan sit amet dolor in congue. Proin tincidunt, nunc at suscipit iaculis, mauris eros ultrices metus, id tincidunt magna lorem rhoncus eros. Duis condimentum lorem et lectus ullamcorper, congue egestas lectus posuere. Sed eget cursus sapien, eu cursus lorem. Donec imperdiet erat quam, consequat accumsan nunc congue quis. Sed consequat massa eu risus sollicitudin, quis mattis lectus ultricies.`;
 
@@ -170,10 +172,11 @@ function seed() {
     'OpenJS Foundation',
   );
 
-  addEntry(
+  let ajPostTime = random_time();
+  let ajEntry = addEntry(
     'AJ ONeal',
     '@coolaj86',
-    random_time(),
+    ajPostTime,
     `Live Coding at Work #21 (#nodejs)
 
         Still working on those Email Templates...
@@ -187,6 +190,19 @@ function seed() {
     0,
     'tweet',
   );
+  addEntry(
+    'William Merfalen',
+    '@lmdbkraft',
+    ajPostTime + 60,
+    `Heh, nice. I'll be sure to check it out!
+        #lurker #nodejs
+    `,
+    0,
+    1,
+    1,
+    'reply|' + ajEntry.id,
+  );
+
 
   addEntry(
     'Verizon',

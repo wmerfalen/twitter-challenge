@@ -738,23 +738,38 @@ button.disabled:hover {
  }
 
  .hover-cursor:hover {
-     cursor: pointer;
+    cursor: pointer;
  }
 
  #floating-reply-div {
-     top: 0px;
-     background-color: var(--main-background-color);
-     color: var(--main-foreground-color);
-     z-index: 1;
-     position: absolute;
-     left: 50%;
-     -webkit-transform: translate(-50%, -50%);
-     transform: translate(-50%, -50%);
-     width: 500px;
-     padding: 1em 0.5em;
-     border-radius: 18px;
-     border: 1px solid var(--main-foreground-color);
+     /*
+    background-color: var(--main-background-color);
+    color: var(--main-foreground-color);
+    */
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 1em 0.5em;
  }
 .floater-wrapper {
-     background-color: var(--main-background-color);
+    position: absolute;
+    background-color: var(--main-background-color);
+    border: 1px solid var(--main-foreground-color);
+ }
+
+ .dismiss:hover {
+     cursor: pointer;
+ }
+ .floater-wrapper .tweet-container {
+     border-bottom: none;
+ }
+ .floater-wrapper .compose-wrapper {
+     border-bottom: none;
+     padding: 1em;
+ }
+ .header {
+     border-bottom: 1px solid var(--main-foreground-color);
  }

@@ -6,7 +6,18 @@ import IdProvider from './id-provider.js';
 const MAX_TWEET_LENGTH = 280;
 const WARN_LENGTH = MAX_TWEET_LENGTH - 20;
 const VISIBILITY = 'visibility-preference';
-function ComposeTweet(){
+const FLOATING_REPLY_DIV = 'floating-reply-div';
+
+function extract(obj,name,fallbackValue=null){
+    if(typeof obj[name] !== 'undefined'){
+        return obj[name];
+    }
+    return fallbackValue;
+}
+function ComposeTweet(props){
+    const floating = extract(props,'floating',false);
+    const originalTweet = extract(props,'originalTweet',null);
+
     /**
      * State variables
      */
@@ -77,12 +88,21 @@ function ComposeTweet(){
             "hearts": 0,
             lense: window.localStorage.getItem(VISIBILITY),
         };
+        if(originalTweet){
+            row.contentType = ['reply',originalTweet.id].join('|');
+        }
         appendRow(row);
         ReactDOM.render(
             <Tweet tweet={row}/>,
             document.getElementById('newly-created-tweet').appendChild(div)
         );
         placePlaceholderText();
+        if(floating){
+            const floater = document.getElementById(FLOATING_REPLY_DIV);
+            if(floater){
+                floater.remove();
+            }
+        }
     }
     function keyLogger(){
         setTweet(content.current.innerText);
@@ -131,7 +151,7 @@ function ComposeTweet(){
               <div contentEditable ref={content} type="text" name="tweet" onKeyUp={() => keyLogger()} onKeyDown={() => keyLogger()} onFocus={togglePlaceholder} onClick={togglePlaceholder} onBlur={forcePlaceholderOff}></div>
             </div>
             <div>
-              <TweetVisibility initialState="everyone"/>
+                {floating ? '' : <TweetVisibility initialState="everyone"/>}
             </div>
             <div className="tweet-options">
               <div></div>
