@@ -740,3 +740,21 @@ button.disabled:hover {
  .hover-cursor:hover {
      cursor: pointer;
  }
+
+ #floating-reply-div {
+     top: 0px;
+     background-color: var(--main-background-color);
+     color: var(--main-foreground-color);
+     z-index: 1;
+     position: absolute;
+     left: 50%;
+     -webkit-transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%);
+     width: 500px;
+     padding: 1em 0.5em;
+     border-radius: 18px;
+     border: 1px solid var(--main-foreground-color);
+ }
+.floater-wrapper {
+     background-color: var(--main-background-color);
+ }

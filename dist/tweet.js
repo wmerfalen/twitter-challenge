@@ -3,6 +3,7 @@ import NavIcon from './nav-icon.js';
 import IdProvider from './id-provider.js';
 import LoginState from './login-tracker.js';
 import LoginModal from './login-modal.js';
+import FloatingReply from './floating-reply.js';
 
 function Likes(tweet) {
     return {
@@ -276,12 +277,23 @@ function Tweet(_ref2) {
         if (popup) {
             popup.remove();
         }
-        //let backdrop = document.getElementById(BACKDROP_ID);
-        //if(backdrop){
-        //    backdrop.remove();
-        //}
     }
-    var everyoneSpan = React.useRef();
+    function spawnReplyBox(for_tweet) {
+        if (LoginState().isLoggedIn() === false) {
+            displayLoginModal();
+            return;
+        }
+        var FLOATING_REPLY_DIV = 'floating-reply-div';
+        var existing = document.getElementById(FLOATING_REPLY_DIV);
+        if (existing) {
+            existing.remove();
+        }
+
+        var div = document.createElement('div');
+        div.id = FLOATING_REPLY_DIV;
+
+        ReactDOM.render(React.createElement(FloatingReply, { for_tweet: for_tweet }), document.body.appendChild(div));
+    }
     var profilePreview = debounce(function (which_tweet, left, top) {
         if (currentlyShowing && currentlyShowing.userName === tweet.userName) {
             return;
@@ -372,7 +384,9 @@ function Tweet(_ref2) {
                 { className: 'tweet-footer' },
                 React.createElement(
                     'div',
-                    { className: 'blue-hover' },
+                    { className: 'blue-hover', onClick: function onClick() {
+                            return spawnReplyBox(tweet);
+                        } },
                     React.createElement(
                         'svg',
                         { viewBox: '0 0 24 24', 'aria-hidden': 'true' },

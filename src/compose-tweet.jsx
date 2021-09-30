@@ -139,7 +139,4 @@ function ComposeTweet(){
     );
 }
 
-ReactDOM.render(
-    <ComposeTweet/>,
-    document.getElementById('compose-tweet')
-);
+export default ComposeTweet;
