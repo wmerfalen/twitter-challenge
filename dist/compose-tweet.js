@@ -37,6 +37,10 @@ function ComposeTweet() {
     var publishButton = React.useRef(null);
 
     function placePlaceholderText() {
+        if (!content.current) {
+            /** User is logged out */
+            return;
+        }
         content.current.innerHTML = "<span class='wh-placeholder'>What's happening?</span>";
     }
     /**
@@ -56,6 +60,10 @@ function ComposeTweet() {
     React.useEffect(function () {
         if (tweet.length === 0 && currentlyEditing === false) {
             placePlaceholderText();
+        }
+        if (!publishButton.current) {
+            /** User is logged out */
+            return;
         }
         if (canPublish === false) {
             publishButton.current.classList.add('disabled');
