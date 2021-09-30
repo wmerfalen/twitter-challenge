@@ -4,16 +4,51 @@ import IdProvider from './id-provider.js';
 import LoginState from './login-tracker.js';
 import LoginModal from './login-modal.js';
 import FloatingReply from './floating-reply.js';
-/** FIXME Ideally should be another component */
-function displayLoginModal(){
-    let div = document.createElement('div');
-    div.id = 'login-modal-wrapper';
-    ReactDOM.render(
-        <LoginModal wrapperId={div.id}/>,
-        document.body.appendChild(div)
-    );
-}
 
+/**
+ * CONSTANTS
+ */
+const FLOATING_PROFILE_DIV = 'floating-profile-div';
+const BACKDROP_ID = 'floating-profile-backdrop';
+const FLOATING_REPLY_DIV = 'floating-reply-div';
+
+/** ======================= */
+/** START UTILITY FUNCTIONS */
+/** ======================= */
+function debounce(func, delay){
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+} 
+/** Utility function. should be in a lib */
+function calculateTime(stamp){
+    const date = new Date(stamp);
+    const MINUTE = 60,
+      HOUR = MINUTE * 60,
+      DAY = HOUR * 24,
+      YEAR = DAY * 365;
+
+    const secondsAgo = Math.round((+new Date() - date) / 1000);
+
+    if (secondsAgo < MINUTE) {
+        return secondsAgo + "s";
+    } else if (secondsAgo < HOUR) {
+        return Math.floor(secondsAgo / MINUTE) + "m";
+    } else if (secondsAgo < DAY) {
+        return Math.floor(secondsAgo / HOUR) + "h";
+    } else if (secondsAgo < YEAR) {
+        return date.toLocaleString("default", { day: "numeric", month: "short" });
+    } else {
+        return date.toLocaleString("default", { year: "numeric", month: "short" });
+    }
+}
+/**
+ * Handles toggling of likes on a per tweet basis. 
+ */
 function Likes(tweet){
     return {
         toggle: function(){
@@ -35,31 +70,50 @@ function Likes(tweet){
         },
     };
 }
-const FLOATING_PROFILE_DIV = 'floating-profile-div';
-const BACKDROP_ID = 'floating-profile-backdrop';
+/**
+ * Fetch likes from localStorage wrapper
+ */
+function getLikes(in_tweet){
+    return Likes(in_tweet).get() + in_tweet.hearts
+}
+
+/**
+ * Turn on/off like by currently logged in user
+ */
+function toggleLikes(in_tweet){
+    if(LoginState().isLoggedIn() === false){
+        displayLoginModal();
+        return;
+    }
+    Likes(in_tweet).toggle();
+    const likeCount = in_tweet.hearts + Likes(in_tweet).get();
+    if(likeCount){
+        document.getElementById(`${in_tweet.id}-likes`).innerText = likeCount;
+    }else{
+        document.getElementById(`${in_tweet.id}-likes`).innerText = '';
+    }
+}
+
+
+function getClassFor(in_tweet){
+    let classes = 'heart-counter';
+    if(Likes(in_tweet).get()){
+        classes += ' liked';
+    }
+    return classes;
+}
+
+/** ====================== */
+/** END UTILITY FUNCTIONS  */
+/** ====================== */
+
+
+
+/** SHARED STATE */
 let currentlyShowing = null;
 let close = true;
-/** Utility function. should be placed in a library */
-function debounce(func, delay){
-    let debounceTimer;
-    return function() {
-        const context = this;
-        const args = arguments;
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => func.apply(context, args), delay);
-    };
-} 
-/** Closes floating reply tweet (if it exists) */
-function closeFloatingProfileDiv(){
-        if(!close){
-            return;
-        }
-        let existing = document.getElementById(FLOATING_PROFILE_DIV);
-        if(existing){
-            existing.remove();
-        }
-        currentlyShowing = null;
-}
+
+/** FLOATING PROFILE FUNCTIONS */
 function FloatingProfile({left,top,tweet}){
     const floatingStyle = {
         position: 'absolute',
@@ -115,61 +169,26 @@ function FloatingProfile({left,top,tweet}){
     </span>
     );
 }
-/** Utility function. should be in a lib */
-function calculateTime(stamp){
-    const date = new Date(stamp);
-    const MINUTE = 60,
-      HOUR = MINUTE * 60,
-      DAY = HOUR * 24,
-      YEAR = DAY * 365;
-
-    const secondsAgo = Math.round((+new Date() - date) / 1000);
-
-    if (secondsAgo < MINUTE) {
-        return secondsAgo + "s";
-    } else if (secondsAgo < HOUR) {
-        return Math.floor(secondsAgo / MINUTE) + "m";
-    } else if (secondsAgo < DAY) {
-        return Math.floor(secondsAgo / HOUR) + "h";
-    } else if (secondsAgo < YEAR) {
-        return date.toLocaleString("default", { day: "numeric", month: "short" });
-    } else {
-        return date.toLocaleString("default", { year: "numeric", month: "short" });
-    }
+/** Closes floating reply tweet (if it exists) */
+function closeFloatingProfileDiv(){
+        if(!close){
+            return;
+        }
+        let existing = document.getElementById(FLOATING_PROFILE_DIV);
+        if(existing){
+            existing.remove();
+        }
+        currentlyShowing = null;
 }
-/**
- * Turn on/off like by currently logged in user
- */
-function toggleLikes(in_tweet){
-    if(LoginState().isLoggedIn() === false){
-        displayLoginModal();
-        return;
-    }
-    Likes(in_tweet).toggle();
-    const likeCount = in_tweet.hearts + Likes(in_tweet).get();
-    if(likeCount){
-        document.getElementById(`${in_tweet.id}-likes`).innerText = likeCount;
-    }else{
-        document.getElementById(`${in_tweet.id}-likes`).innerText = '';
-    }
+function displayLoginModal(){
+    let div = document.createElement('div');
+    div.id = 'login-modal-wrapper';
+    ReactDOM.render(
+        <LoginModal wrapperId={div.id}/>,
+        document.body.appendChild(div)
+    );
 }
 
-/**
- * Fetch likes from localStorage wrapper
- */
-function getLikes(in_tweet){
-    return Likes(in_tweet).get() + in_tweet.hearts
-}
-
-function getClassFor(in_tweet){
-    let classes = 'heart-counter';
-    if(Likes(in_tweet).get()){
-        classes += ' liked';
-    }
-    return classes;
-}
-
-const FLOATING_REPLY_DIV = 'floating-reply-div';
 /**
  * Click handler to spawn a reply box
  */
