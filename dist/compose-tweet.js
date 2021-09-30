@@ -55,6 +55,10 @@ function ComposeTweet(props) {
             /** User is logged out */
             return;
         }
+        if (floating) {
+            content.current.innerHTML = "<span class='wh-placeholder'>Add another Tweet</span>";
+            return;
+        }
         content.current.innerHTML = "<span class='wh-placeholder'>What's happening?</span>";
     }
     /**
@@ -119,6 +123,9 @@ function ComposeTweet(props) {
             }
         }
     }
+    function trimmed(tweet) {
+        return tweet.replace(/\n/, '');
+    }
     function keyLogger() {
         setTweet(content.current.innerText);
         setCurrentlyEditing(true);
@@ -142,19 +149,27 @@ function ComposeTweet(props) {
             return;
         }
         lettersLeft.current.innerText = '';
+        content.current.focus();
         setCanPublish(true);
     }
     function togglePlaceholder() {
-        if (tweet.length === 0) {
+        if (trimmed(tweet).length === 0) {
             setCurrentlyEditing(false);
-            content.current.innerHTML = '';
         }
     }
     function forcePlaceholderOff() {
         setCurrentlyEditing(false);
-        if (tweet.length === 0) {
+        if (trimmed(tweet).length === 0) {
             placePlaceholderText();
         }
+    }
+    function forceFocusToComposer() {
+        if (content.current.innerHTML.match(/<span class="wh-placeholder">/)) {
+            content.current.innerHTML = '';
+        }
+
+        content.current.setAttribute('contenteditable', true);
+        content.current.focus();
     }
     return React.createElement(
         'div',
@@ -166,16 +181,12 @@ function ComposeTweet(props) {
         ),
         React.createElement(
             'div',
-            { className: 'compose-tweet' },
-            React.createElement(
-                'div',
-                null,
-                React.createElement('div', { contentEditable: true, ref: content, type: 'text', name: 'tweet', onKeyUp: function onKeyUp() {
-                        return keyLogger();
-                    }, onKeyDown: function onKeyDown() {
-                        return keyLogger();
-                    }, onFocus: togglePlaceholder, onClick: togglePlaceholder, onBlur: forcePlaceholderOff })
-            ),
+            { className: 'compose-tweet', onClick: forceFocusToComposer },
+            React.createElement('div', { contentEditable: true, ref: content, name: 'tweet', onKeyUp: function onKeyUp() {
+                    return keyLogger();
+                }, onKeyDown: function onKeyDown() {
+                    return keyLogger();
+                }, onFocus: togglePlaceholder, onBlur: forcePlaceholderOff, onClick: forceFocusToComposer }),
             React.createElement(
                 'div',
                 null,

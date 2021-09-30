@@ -37,6 +37,10 @@ function ComposeTweet(props){
             /** User is logged out */
             return;
         }
+        if(floating){
+            content.current.innerHTML = "<span class='wh-placeholder'>Add another Tweet</span>";
+            return;
+        }
         content.current.innerHTML = "<span class='wh-placeholder'>What's happening?</span>";
     }
     /**
@@ -104,6 +108,9 @@ function ComposeTweet(props){
             }
         }
     }
+    function trimmed(tweet){
+        return tweet.replace(/\n/,'')
+    }
     function keyLogger(){
         setTweet(content.current.innerText);
         setCurrentlyEditing(true);
@@ -127,29 +134,35 @@ function ComposeTweet(props){
             return;
         }
         lettersLeft.current.innerText = '';
+        content.current.focus();
         setCanPublish(true);
     }
     function togglePlaceholder(){
-        if(tweet.length === 0){
+        if(trimmed(tweet).length === 0){
             setCurrentlyEditing(false);
-            content.current.innerHTML = '';
         }
     }
     function forcePlaceholderOff(){
         setCurrentlyEditing(false);
-        if(tweet.length === 0){
+        if(trimmed(tweet).length === 0){
             placePlaceholderText();
         }
+    }
+    function forceFocusToComposer(){
+        if(content.current.innerHTML.match(/<span class="wh-placeholder">/)){
+            content.current.innerHTML = '';
+        }
+
+        content.current.setAttribute('contenteditable',true);
+        content.current.focus();
     }
     return (
         <div className="compose-wrapper">
           <div className="profile-image-wrapper">
             <img src="assets/img/me.jpg" className="profile-image"/>
           </div>
-          <div className="compose-tweet">
-            <div>
-              <div contentEditable ref={content} type="text" name="tweet" onKeyUp={() => keyLogger()} onKeyDown={() => keyLogger()} onFocus={togglePlaceholder} onClick={togglePlaceholder} onBlur={forcePlaceholderOff}></div>
-            </div>
+          <div className="compose-tweet" onClick={forceFocusToComposer}>
+              <div contentEditable={true} ref={content} name="tweet" onKeyUp={() => keyLogger()} onKeyDown={() => keyLogger()} onFocus={togglePlaceholder} onBlur={forcePlaceholderOff} onClick={forceFocusToComposer}></div>
             <div>
                 {floating ? '' : <TweetVisibility initialState="everyone"/>}
             </div>

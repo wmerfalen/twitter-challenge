@@ -201,7 +201,7 @@ div[contenteditable] {
     background-color: var(--main-background-color);
     color: var(--main-foreground-color);
     font-size: var(--tweet-font-size);
-    padding: 1em 2em 1em 1em;
+    /*padding: 1em 2em 1em 1em;*/
     border: none;
     box-sizing: border-box;
     width: 97%;
