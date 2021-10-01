@@ -38,7 +38,7 @@ function LeftNav() {
 
     React.useEffect(function () {
         console.log('useEffects: ', { page: page });
-        window.location.href = 'https://wmerfalen.github.io/clones/public/twitter/dist/home.html#' + page;
+        window.location.href = '/clones/home.html#' + page;
     });
     return React.createElement(
         'div',

@@ -6,7 +6,7 @@ function LoginPrompter({wrapperId}){
         document.getElementById(MODAL_WRAPPER_ID).remove();
     }
     function gotoLogin(){
-        window.location.href= 'https://wmerfalen.github.io/clones/public/twitter/dist/'
+        window.location.href= '/clones/index.html';
     }
     return (
     <div className="login-popup">

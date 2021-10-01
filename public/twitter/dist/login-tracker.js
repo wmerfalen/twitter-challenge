@@ -30,7 +30,7 @@ function LoginTracker() {
     React.useEffect(function () {
         LoginState().set(loginState);
         if (['login', 'signup'].indexOf(page) > -1) {
-            window.location.href = 'https://wmerfalen.github.io/clones/public/twitter/dist/';
+            window.location.href = '/clones/index.html';
         }
     });
     if (LoginState().isLoggedIn() === false) {
