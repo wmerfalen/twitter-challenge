@@ -40,15 +40,15 @@
  */
 @font-face {
     font-family: TwitterChirpExtendedHeavy;
-    src: url("/public/twitter/dist/assets/fonts/chirp-extended-heavy-web.woff");
+    src: url("/clones/assets/fonts/chirp-extended-heavy-web.woff");
 }
 @font-face {
     font-family: TwitterChirpBold;
-    src: url("/public/twitter/dist/assets/fonts/chirp-bold-web.woff");
+    src: url("/clones/assets/fonts/chirp-bold-web.woff");
 }
 @font-face {
     font-family: TwitterChirp;
-    src: url("/public/twitter/dist/assets/fonts/chirp-regular-web.woff");
+    src: url("/clones/assets/fonts/chirp-regular-web.woff");
 }
 /**
  * Removing default browser style sheet
