@@ -30,7 +30,7 @@ function LoginTracker() {
     React.useEffect(function () {
         LoginState().set(loginState);
         if (['login', 'signup'].indexOf(page) > -1) {
-            window.location.href = 'https://fluxkraft-os.net/public/twitter/dist/';
+            window.location.href = 'https://wmerfalen.github.io/clones/index.html';
         }
     });
     if (LoginState().isLoggedIn() === false) {

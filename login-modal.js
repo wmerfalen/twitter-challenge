@@ -8,7 +8,7 @@ function LoginPrompter(_ref) {
         document.getElementById(MODAL_WRAPPER_ID).remove();
     }
     function gotoLogin() {
-        window.location.href = 'https://fluxkraft-os.net/public/twitter/dist/';
+        window.location.href = 'https://wmerfalen.gihub.io/clones/index.html';
     }
     return React.createElement(
         'div',
