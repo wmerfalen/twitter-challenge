@@ -111,7 +111,7 @@ function ComposeTweet(props){
     function trimmed(tweet){
         return tweet.replace(/\n/,'')
     }
-    function keyLogger(){
+    function keyLogger(event,direction){
         setTweet(content.current.innerText);
         setCurrentlyEditing(true);
         const len = content.current.innerText.length;
@@ -134,7 +134,6 @@ function ComposeTweet(props){
             return;
         }
         lettersLeft.current.innerText = '';
-        content.current.focus();
         setCanPublish(true);
     }
     function togglePlaceholder(){
@@ -154,7 +153,6 @@ function ComposeTweet(props){
         }
 
         content.current.setAttribute('contenteditable',true);
-        content.current.focus();
     }
     return (
         <div className="compose-wrapper">
@@ -162,7 +160,7 @@ function ComposeTweet(props){
             <img src="assets/img/me.jpg" className="profile-image"/>
           </div>
           <div className="compose-tweet" onClick={forceFocusToComposer}>
-              <div contentEditable={true} ref={content} name="tweet" onKeyUp={() => keyLogger()} onKeyDown={() => keyLogger()} onFocus={togglePlaceholder} onBlur={forcePlaceholderOff} onClick={forceFocusToComposer}></div>
+              <p contentEditable={true} ref={content} name="tweet" onKeyUp={(event) => keyLogger(event,'up')} onKeyDown={(event) => keyLogger(event,'down')} onFocus={togglePlaceholder} onBlur={forcePlaceholderOff} onClick={forceFocusToComposer}></p>
             <div>
                 {floating ? '' : <TweetVisibility initialState="everyone"/>}
             </div>

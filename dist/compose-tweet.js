@@ -126,7 +126,7 @@ function ComposeTweet(props) {
     function trimmed(tweet) {
         return tweet.replace(/\n/, '');
     }
-    function keyLogger() {
+    function keyLogger(event, direction) {
         setTweet(content.current.innerText);
         setCurrentlyEditing(true);
         var len = content.current.innerText.length;
@@ -149,7 +149,6 @@ function ComposeTweet(props) {
             return;
         }
         lettersLeft.current.innerText = '';
-        content.current.focus();
         setCanPublish(true);
     }
     function togglePlaceholder() {
@@ -169,7 +168,6 @@ function ComposeTweet(props) {
         }
 
         content.current.setAttribute('contenteditable', true);
-        content.current.focus();
     }
     return React.createElement(
         'div',
@@ -182,10 +180,10 @@ function ComposeTweet(props) {
         React.createElement(
             'div',
             { className: 'compose-tweet', onClick: forceFocusToComposer },
-            React.createElement('div', { contentEditable: true, ref: content, name: 'tweet', onKeyUp: function onKeyUp() {
-                    return keyLogger();
-                }, onKeyDown: function onKeyDown() {
-                    return keyLogger();
+            React.createElement('p', { contentEditable: true, ref: content, name: 'tweet', onKeyUp: function onKeyUp(event) {
+                    return keyLogger(event, 'up');
+                }, onKeyDown: function onKeyDown(event) {
+                    return keyLogger(event, 'down');
                 }, onFocus: togglePlaceholder, onBlur: forcePlaceholderOff, onClick: forceFocusToComposer }),
             React.createElement(
                 'div',
