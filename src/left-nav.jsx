@@ -19,7 +19,7 @@ function LeftNav(){
     React.useEffect(() => {
 
         console.log('useEffects: ',{page});
-        window.location.href='https://fluxkraft-os.net/public/twitter/dist/home.html#' + page;
+        window.location.href='https://wmerfalen.github.io/clones/public/twitter/dist/home.html#' + page;
     });
     return (
         <div className="nav-wrapper">

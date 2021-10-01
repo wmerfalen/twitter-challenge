@@ -14,7 +14,7 @@ function LoginTracker(){
     React.useEffect(() => {
         LoginState().set(loginState);
         if(['login','signup'].indexOf(page) > -1){
-            window.location.href='https://fluxkraft-os.net/public/twitter/dist/'
+            window.location.href='https://wmerfalen.github.io/clones/public/twitter/dist/'
         }
     });
     if(LoginState().isLoggedIn() === false){
