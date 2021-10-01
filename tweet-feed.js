@@ -5,7 +5,7 @@ import IdProvider from './id-provider.js';
 
 function fetchTweets() {
     return new Promise(function (resolve, reject) {
-        fetch('/public/twitter/dist/api/tweets.json').then(function (response) {
+        fetch('tweets.json').then(function (response) {
             response.json().then(resolve).catch(reject);
         }).catch(reject);
     });
