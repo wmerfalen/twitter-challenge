@@ -4,7 +4,7 @@ function Login(){
         link.onclick = function(event){
             event.preventDefault();
             window.localStorage.setItem(LOGIN_STATE,'logged-in');
-            window.location.href = '/public/twitter/dist/home.html';
+            window.location.href = 'home.html';
         };
     }
 }
