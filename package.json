@@ -1,0 +1,19 @@
+{
+  "name": "twitter-clone-challenge",
+  "version": "1.0.0",
+  "description": "twitter clone challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wmerfalen/twitter.git"
+  },
+  "author": "William Merfalen <null@fluxkraft-os.net> (https://github.com/wmerfalen)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wmerfalen/twitter/issues"
+  },
+  "homepage": "https://github.com/wmerfalen/twitter#readme"
+}
