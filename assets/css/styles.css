@@ -129,7 +129,7 @@ svg.google-sso{
     padding-right: 20px;
 }
 .splash {
-    background-image: url("/public/twitter/dist/assets/img/login-background.png");
+    background-image: url("/clones/assets/img/login-background.png");
     height: var(--page-height);
     width: 49%;
     background-color: var(--main-bg-color);
