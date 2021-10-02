@@ -1,6 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import './css/styles.css';
+import logo from "./logo.svg";
+import "./App.css";
+import "./css/styles.css";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+
+/** Let's mount the logged out components */
+import AutoLoginMiddleware from "./login/login.jsx";
+/** Load some persistence helpers for keeping Login state */
+import LoginTracker from "./storage/login-tracker.jsx";
 
 function App() {
   return (
@@ -19,6 +25,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <LoginTracker />
     </div>
   );
 }
