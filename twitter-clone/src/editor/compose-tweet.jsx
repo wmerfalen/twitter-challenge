@@ -1,20 +1,21 @@
+import React from "react";
+import ReactDOM from "react";
 //import TweetVisibility from "./visibility.js";
 //import Tweet from "./tweet.js";
-//import LoginState from "./login-tracker.js";
+import LoginState from "../storage/login-state";
+import IdProvider from "../providers/id/id-provider";
+import Tweet from "../tweet/tweet";
+
 //import IdProvider from "./id-provider.js";
 
-import TweetVisibility from '..///
+import TweetVisibility from "../tweet/tweet-visibility";
 const MAX_TWEET_LENGTH = 280;
 const WARN_LENGTH = MAX_TWEET_LENGTH - 20;
 const VISIBILITY = "visibility-preference";
 const FLOATING_REPLY_DIV = "floating-reply-div";
 
-function extract(obj, name, fallbackValue = null) {
-  if (typeof obj[name] !== "undefined") {
-    return obj[name];
-  }
-  return fallbackValue;
-}
+const { extract } = require("../utils/");
+
 function ComposeTweet(props) {
   const floating = extract(props, "floating", false);
   const originalTweet = extract(props, "originalTweet", null);

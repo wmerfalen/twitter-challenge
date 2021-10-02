@@ -4,9 +4,10 @@ import "./css/styles.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 /** Let's mount the logged out components */
-import AutoLoginMiddleware from "./login/login.jsx";
+import AutoLoginMiddleware from "./login/login";
 /** Load some persistence helpers for keeping Login state */
-import LoginTracker from "./storage/login-tracker.jsx";
+import LoginTracker from "./storage/login-tracker";
+import ComposeTweet from "./editor/compose-tweet";
 
 function App() {
   return (

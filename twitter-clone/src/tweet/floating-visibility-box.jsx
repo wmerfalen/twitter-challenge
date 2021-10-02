@@ -1,12 +1,14 @@
-const POPUP_ID = "tweet-visibility-popup";
-const BACKDROP_ID = "tweet-visibility-backdrop";
+import { React } from "react";
+
+//const POPUP_ID = "tweet-visibility-popup";
+//const BACKDROP_ID = "tweet-visibility-backdrop";
 const VISIBILITY = "visibility-preference";
 function FloatingVisibilityBox({ eventInfo, placeResultAt }) {
   const [visibility, setVisibility] = React.useState(
     window.localStorage.getItem(VISIBILITY)
   );
   React.useEffect(() => {
-    event.preventDefault();
+    //event.preventDefault();
     switch (visibility) {
       default:
       case "everyone":
@@ -39,6 +41,7 @@ function FloatingVisibilityBox({ eventInfo, placeResultAt }) {
       <div className="selection" onClick={() => setVisibility("everyone")}>
         <div>
           <img
+            alt="everyone"
             className="visibility-icon"
             src="assets/img/font-awesome-svgs/globe.svg"
           />
@@ -46,7 +49,7 @@ function FloatingVisibilityBox({ eventInfo, placeResultAt }) {
         <div>Everyone</div>
         <div className="check-mark">
           {visibility === "everyone" ? (
-            <img src="assets/img/font-awesome-svgs/check.svg" />
+            <img alt="everyone" src="assets/img/font-awesome-svgs/check.svg" />
           ) : (
             ""
           )}
@@ -55,6 +58,7 @@ function FloatingVisibilityBox({ eventInfo, placeResultAt }) {
       <div className="selection" onClick={() => setVisibility("follow")}>
         <div>
           <img
+            alt="follow"
             className="visibility-icon"
             src="assets/img/font-awesome-svgs/users.svg"
           />
@@ -62,7 +66,7 @@ function FloatingVisibilityBox({ eventInfo, placeResultAt }) {
         <div>People you follow</div>
         <div className="check-mark">
           {visibility === "follow" ? (
-            <img src="assets/img/font-awesome-svgs/check.svg" />
+            <img alt="follow" src="assets/img/font-awesome-svgs/check.svg" />
           ) : (
             ""
           )}
@@ -71,6 +75,7 @@ function FloatingVisibilityBox({ eventInfo, placeResultAt }) {
       <div className="selection" onClick={() => setVisibility("mention")}>
         <div>
           <img
+            alt="mentions"
             className="visibility-icon"
             src="assets/img/font-awesome-svgs/lock.svg"
           />
@@ -78,7 +83,7 @@ function FloatingVisibilityBox({ eventInfo, placeResultAt }) {
         <div>Only people you mention</div>
         <div className="check-mark">
           {visibility === "mention" ? (
-            <img src="assets/img/font-awesome-svgs/check.svg" />
+            <img alt="mentions" src="assets/img/font-awesome-svgs/check.svg" />
           ) : (
             ""
           )}

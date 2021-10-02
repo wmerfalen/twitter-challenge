@@ -1,11 +1,4 @@
-//import NavIcon from './nav-icon.js';
-//import IdProvider from './id-provider.js';
-//import LoginState from './login-tracker.js';
-//import LoginModal from './login-modal.js';
-//import FloatingReply from './floating-reply.js';
-
 import LoginState from "./login-state";
-//import IdProvider from "../providers/id/id-provider";
 
 const { debounce, calculateTime } = require("../utils");
 

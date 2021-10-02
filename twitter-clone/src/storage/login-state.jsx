@@ -1,4 +1,3 @@
-import React from "react";
 function LoginState() {
   const LOGIN_STATE = "login-state";
   return {
