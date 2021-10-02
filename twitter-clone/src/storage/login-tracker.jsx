@@ -11,7 +11,7 @@ function LoginTracker() {
     }
   });
   if (LoginState().isLoggedIn() === false) {
-    document.getElementById("navigation-echo").classList.add("hidden");
+    //document.getElementById("navigation-echo").classList.add("hidden");
     return (
       <div className="fixed-login-banner">
         <div></div>

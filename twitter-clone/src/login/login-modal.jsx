@@ -1,6 +1,6 @@
 import { React } from "react";
 
-import LoginPromptSvg from "../svg/login-prompt.svg";
+import LoginPromptSvg from "../svg/login-prompt";
 
 const POPUP_ID = "tweet-login-popup";
 //const BACKDROP_ID = "tweet-login-backdrop";

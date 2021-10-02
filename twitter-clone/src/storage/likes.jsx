@@ -1,4 +1,4 @@
-import LoginState from "./login-state";
+const LoginState = require("./login-state");
 
 /**
  * Handles toggling of likes on a per tweet basis.

@@ -1,59 +1,65 @@
-import HeadContent from "./head-content";
-import GoogleSignupSvg from "../svg/signup/google.svg";
-import AppleSignupSvg from "../svg/signup/apple.svg";
-import BirdSvg from "../svg/bird.svg";
+import GoogleSignupSvg from "../svg/signup/google";
+import AppleSignupSvg from "../svg/signup/apple";
+import BirdSvg from "../svg/bird";
 
 function LoginScreen() {
+  /**
+   * FIXME: this content was originally wrapped in
+   * <div id="app">
+   * Make sure to refactor all occurrences that may be
+   * affected by that. (i.e.: css styles), or direct
+   * mounts using ReactDOM.render
+   */
   return (
     <div id="app">
-      <div class="split-columns">
-        <div class="splash flex-vertical-center">
+      <div className="split-columns">
+        <div className="splash flex-vertical-center">
           <BirdSvg />
         </div>
-        <div class="login flex-vertical-center">
+        <div className="login flex-vertical-center">
           <BirdSvg />
           <h1>Happening now</h1>
           <h2>Join Twitter today.</h2>
-          <div class="single-sign-on">
-            <a href="#" class="login-mechanism">
+          <div className="single-sign-on">
+            <a href="/home.html" className="login-mechanism">
               <GoogleSignupSvg />
               Sign up with Google
             </a>
             <br />
           </div>
-          <div class="single-sign-on">
-            <a href="#" class="login-mechanism">
+          <div className="single-sign-on">
+            <a href="/home.html#" className="login-mechanism">
               <AppleSignupSvg />
               Sign up with Apple
             </a>
             <br />
           </div>
-          <div class="single-sign-on">
-            <a href="#" class="login-mechanism">
+          <div className="single-sign-on">
+            <a href="/home.html#" className="login-mechanism">
               Sign up with phone or email
             </a>
             <br />
           </div>
-          <span class="tos">
+          <span className="tos">
             By signing up, you agree to the{" "}
-            <a class="blue" href="https://twitter.com/tos">
+            <a className="blue" href="https://twitter.com/tos">
               Terms of Service
             </a>{" "}
             and{" "}
-            <a class="blue" href="https://twitter.com/en/privacy">
+            <a className="blue" href="https://twitter.com/en/privacy">
               Privacy Policy
             </a>
             , including{" "}
             <a
-              class="blue"
+              className="blue"
               href="https://help.twitter.com/rules-and-policies/twitter-cookies"
             >
               Cookie Use.
             </a>
           </span>
-          <span class="existing-members">
+          <span className="existing-members">
             Already have an account?
-            <a href="#" class="blue login-mechanism">
+            <a href="home.html#" className="blue login-mechanism">
               Sign in
             </a>
           </span>
