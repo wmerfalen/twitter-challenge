@@ -46,17 +46,18 @@ function TweetVisibility() {
 
   return (
     <div className="visibility-wrapper">
-      <a onClick={handleClick}>
+      <div className="hover-cursor" onClick={handleClick}>
         <span className="tweet-visibility">
           <span ref={everyoneSpan}>
             <img
+              alt="visibility icon"
               className="visibility-icon"
               src="assets/img/font-awesome-svgs/globe.svg"
             />
             Everyone can reply
           </span>
         </span>
-      </a>
+      </div>
     </div>
   );
 }

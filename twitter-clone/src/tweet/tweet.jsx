@@ -15,7 +15,7 @@ const { debounce, calculateTime } = require("../utils/");
  * CONSTANTS
  */
 const FLOATING_PROFILE_DIV = "floating-profile-div";
-const BACKDROP_ID = "floating-profile-backdrop";
+//const BACKDROP_ID = "floating-profile-backdrop";
 const FLOATING_REPLY_DIV = "floating-reply-div";
 
 function getLikes(in_tweet) {
@@ -83,7 +83,10 @@ function FloatingProfile({ left, top, tweet }) {
     >
       <div className="header">
         <div>
-          <img src={getUserProfilePic(tweet)} />
+          <img
+            alt={`${tweet.name} profile pic`}
+            src={getUserProfilePic(tweet)}
+          />
         </div>
         <div>
           <div className="following-status">
@@ -164,12 +167,7 @@ function profilePic(tweet) {
     .replace(/[^a-z0-9_]+/, "");
   return `assets/img/users/${user}.jpg`;
 }
-function closeModals() {
-  let popup = document.getElementById(FLOATING_PROFILE_DIV);
-  if (popup) {
-    popup.remove();
-  }
-}
+
 const profilePreview = debounce(function (which_tweet, left, top) {
   if (document.getElementById(FLOATING_REPLY_DIV)) {
     return;
@@ -196,16 +194,6 @@ const removeProfilePreview = debounce(function (which_tweet) {
   closeFloatingProfileDiv();
 }, 1000);
 
-/**
- * Dynamic content helpers
- */
-function tweetElipses(tweet, floating) {
-  if (floating) {
-    return <div></div>;
-  }
-
-  return <span className="tweet-elipses">...</span>;
-}
 function tweetFooter(tweet, floating) {
   if (floating) {
     return <div></div>;
@@ -316,7 +304,7 @@ function Tweet({ tweet, floating }) {
         onMouseOver={(event) => profilePreview(tweet, event.pageX, event.pageY)}
         onMouseLeave={() => removeProfilePreview(tweet)}
       >
-        <img src={profilePic(tweet)} />
+        <img alt={`${tweet.name} profile pic`} src={profilePic(tweet)} />
       </div>
       <div className="tweet-content hover-cursor">
         <b

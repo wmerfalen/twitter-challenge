@@ -74,7 +74,7 @@ function ComposeTweet(props) {
       return;
     }
     publishButton.current.classList.remove("disabled");
-  }, [tweet, canPublish]);
+  });
   if (LoginState().isLoggedIn() === false) {
     return <div></div>;
   }
@@ -161,7 +161,11 @@ function ComposeTweet(props) {
   return (
     <div className="compose-wrapper">
       <div className="profile-image-wrapper">
-        <img src="assets/img/me.jpg" className="profile-image" />
+        <img
+          alt="@lmdbkraft profile pic"
+          src="assets/img/me.jpg"
+          className="profile-image"
+        />
       </div>
       <div className="compose-tweet" onClick={forceFocusToComposer}>
         <p

@@ -1,7 +1,5 @@
 import LoginState from "./login-state";
 
-const { debounce, calculateTime } = require("../utils");
-
 /**
  * Handles toggling of likes on a per tweet basis.
  */
