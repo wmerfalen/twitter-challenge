@@ -1,0 +1,203 @@
+/** 
+ * Custom font faces
+ */
+@font-face {
+    font-family: TwitterChirpExtendedHeavy;
+    src: url("../fonts/chirp-extended-heavy-web.woff");
+}
+@font-face {
+    font-family: TwitterChirpBold;
+    src: url("../fonts/chirp-bold-web.woff");
+}
+@font-face {
+    font-family: TwitterChirp;
+    src: url("../fonts/chirp-regular-web.woff");
+}
+
+/**
+ * CSS Variables
+ */
+:root {
+    --main-bg-color: rgb(0,0,0);
+    --main-foreground-color: rgb(217, 217, 217);
+    --logo-height: 100%;
+    --logo-width: 100%;
+    --full-width: 100%;
+    --full-height: 100%;
+    --happening-font: TwitterChirpExtendedHeavy, Verdana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --happening-font-size: 61px;
+    --happening-color: rgb(217, 217, 217);
+    --login-padding-left: 1em;
+    --join-font: TwitterChirpExtendedHeavy, Verdana, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --join-font-size: 31px;
+    --page-height: 1024px;
+    --tos-font-color: rgb(110, 118, 125);
+    --tos-link-color: rgb(27, 149, 224);
+    --sso-link-background-color: white;
+    --sso-link-foreground-color: rgb(15, 20, 25);
+    --sso-link-font-size: 15px;
+    --sso-link-font-weight: 700;
+    --sso-link-line-height: 20px;
+    --existing-members-font-color: rgb(217, 217, 217);
+    --twitter-chirp-font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+/**
+ * Mount point
+ */
+#app {
+    height: 100%;
+    width: 100%;
+}
+
+/**
+ * Removing default browser style sheet
+ */
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: var(--main-bg-color);
+    width: 100%;
+    height: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a:visited {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a:active {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+}
+a {
+    text-decoration: none;
+    color: var(--main-foreground-color);
+
+}
+
+.flex-vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.login {
+    height: var(--page-height);
+    background-color: var(--main-bg-color);
+    width: 49%;
+    margin-left: 2em;
+}
+.login span.tos {
+    font-family: var(--twitter-chirp-font-family);
+    color: var(--tos-font-color);
+    font-size: 13px;
+}
+.login .single-sign-on {
+    margin-bottom: 20px;
+}
+.login .single-sign-on a {
+  padding: 10px 30px;
+  background: var(--sso-link-background-color);
+  color: var(--sso-link-foreground-color);
+  border: none;
+  border-radius: 9999px; /** Actual value from twitter's source code */
+  font-family: var(--twitter-chirp-font-family);
+  font-size: var(--sso-link-font-size);
+  font-weight: var(--sso-link-font-weight);
+  line-height: var(--sso-link-line-height);
+  font-stretch: 100%;
+}
+svg.google-sso{
+
+}
+.single-sign-on a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 280px;
+}
+.single-sign-on a span {
+    width: 180px;
+}
+.single-sign-on svg.vendor-icon {
+    height: 21px;
+    width: 21px;
+    padding-right: 20px;
+}
+.splash {
+    background-image: url("../img/login-background.png");
+    height: var(--page-height);
+    width: 49%;
+    background-color: var(--main-bg-color);
+}
+
+.split-columns {
+    flex-direction: row;
+    display: flex;
+}
+
+.login svg.twitter-logo {
+    color: var(--main-foreground-color);
+    filter: invert(100%);
+    height: 33px;
+    align-self: flex-start;
+}
+
+.splash svg {
+    color: var(--main-foreground-color);
+    filter: invert(100%);
+    max-height: 380px;
+}
+.login h1 {
+    font-family: var(--happening-font);
+    color: var(--main-foreground-color);
+    font-size: var(--happening-font-size);
+    margin-bottom: 41px;
+    margin-top: 41px;
+}
+
+.login h2 {
+    font-family: var(--join-font);
+    color: var(--main-foreground-color);
+    font-size: var(--join-font-size);
+}
+
+.login span.existing-members {
+    color: var(--existing-members-font-color);
+    /*font-family: var(--join-font);*/
+    /*font-size: var(--join-font-size);*/
+}
+
+.justify {
+    /*-webkit-box-pack: center;
+    justify-content: center;
+    */
+}
+a.blue:active {
+    color: var(--tos-link-color);
+}
+a.blue {
+    color: var(--tos-link-color);
+}
+a.blue:visited {
+    color: var(--tos-link-color);
+}
+a.blue:hover {
+    color: var(--tos-link-color);
+    text-decoration: underline;
+}
+span.existing-members {
+    margin-top: 1em;
+}
+
+.three-columns {
+    display: flex;
+    flex-direction: column;
+}
+.left-nav {
+    align-self: flex-start;
+}
