@@ -38,7 +38,10 @@ function ComposeTweet(props) {
       return;
     }
     if (floating) {
-      if (xtract(props, "tweet.from", "") === LoginState().currentUser()) {
+      if (
+        xtract(props, "tweet.userName", "").toLowerCase().replace(/@/, "") ===
+        LoginState().currentUser()
+      ) {
         content.current.innerHTML =
           "<span class='wh-placeholder'>Add another Tweet</span>";
         return;
