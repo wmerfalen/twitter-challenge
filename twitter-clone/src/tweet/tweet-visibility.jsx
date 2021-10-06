@@ -1,11 +1,13 @@
-import { React, ReactDOM } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
 import FloatingVisibilityBox from "./floating-visibility-box";
+import Config from "../config/";
 
 const POPUP_ID = "tweet-visibility-popup";
 const BACKDROP_ID = "tweet-visibility-backdrop";
-//const VISIBILITY = "visibility-preference";
 
 function TweetVisibility() {
+  const ASSETS = Config.ASSETS_BASE_URL;
   function closeModals() {
     let popup = document.getElementById(POPUP_ID);
     if (popup) {
@@ -45,14 +47,14 @@ function TweetVisibility() {
   }
 
   return (
-    <div className="visibility-wrapper">
+    <div className="visibility-wrapper" id="visibility-wrapper">
       <div className="hover-cursor" onClick={handleClick}>
         <span className="tweet-visibility">
           <span ref={everyoneSpan}>
             <img
               alt="visibility icon"
               className="visibility-icon"
-              src="assets/img/font-awesome-svgs/globe.svg"
+              src={`${ASSETS}/img/font-awesome-svgs/globe.svg`}
             />
             Everyone can reply
           </span>

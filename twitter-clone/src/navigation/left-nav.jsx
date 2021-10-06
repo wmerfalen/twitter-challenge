@@ -40,12 +40,6 @@ function LeftNav() {
       />
       <NavIcon
         loggedIn={loggedIn}
-        type="messages"
-        clickHandler={setPage}
-        active={isMessages()}
-      />
-      <NavIcon
-        loggedIn={loggedIn}
         type="explore"
         clickHandler={setPage}
         active={isExplore()}
@@ -55,6 +49,12 @@ function LeftNav() {
         type="notifications"
         clickHandler={setPage}
         active={isNotifications()}
+      />
+      <NavIcon
+        loggedIn={loggedIn}
+        type="messages"
+        clickHandler={setPage}
+        active={isMessages()}
       />
       <NavIcon
         loggedIn={loggedIn}

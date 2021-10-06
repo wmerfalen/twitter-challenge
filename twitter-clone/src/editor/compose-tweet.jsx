@@ -1,24 +1,22 @@
 import React from "react";
-import ReactDOM from "react";
-//import TweetVisibility from "./visibility.js";
-//import Tweet from "./tweet.js";
+import ReactDOM from "react-dom";
 import LoginState from "../storage/login-state";
 import IdProvider from "../providers/id/id-provider";
 import Tweet from "../tweet/tweet";
 
-//import IdProvider from "./id-provider.js";
-
 import TweetVisibility from "../tweet/tweet-visibility";
-const MAX_TWEET_LENGTH = 280;
-const WARN_LENGTH = MAX_TWEET_LENGTH - 20;
+import Config from "../config/";
+const MAX_TWEET_LENGTH = Config.MAX_TWEET_LENGTH;
+const WARN_LENGTH = Config.WARN_LENGTH;
 const VISIBILITY = "visibility-preference";
 const FLOATING_REPLY_DIV = "floating-reply-div";
 
-const { extract } = require("../utils/");
+const xtract = require("../utils/").mentoc.array.xtract;
 
 function ComposeTweet(props) {
-  const floating = extract(props, "floating", false);
-  const originalTweet = extract(props, "originalTweet", null);
+  const ASSETS = Config.ASSETS_BASE_URL;
+  const floating = xtract(props, "floating", false);
+  const originalTweet = xtract(props, "originalTweet", null);
 
   /**
    * State variables
@@ -40,8 +38,13 @@ function ComposeTweet(props) {
       return;
     }
     if (floating) {
+      if (xtract(props, "tweet.from", "") === LoginState().currentUser()) {
+        content.current.innerHTML =
+          "<span class='wh-placeholder'>Add another Tweet</span>";
+        return;
+      }
       content.current.innerHTML =
-        "<span class='wh-placeholder'>Add another Tweet</span>";
+        "<span class='wh-placeholder'>Tweet your reply</span>";
       return;
     }
     content.current.innerHTML =
@@ -101,7 +104,7 @@ function ComposeTweet(props) {
     }
     appendRow(row);
     ReactDOM.render(
-      <Tweet tweet={row} />,
+      <Tweet tweet={row} type={originalTweet ? "reply" : "tweet"} />,
       document.getElementById("newly-created-tweet").appendChild(div)
     );
     placePlaceholderText();
@@ -159,38 +162,42 @@ function ComposeTweet(props) {
     content.current.setAttribute("contenteditable", true);
   }
   return (
-    <div className="compose-wrapper">
-      <div className="profile-image-wrapper">
-        <img
-          alt="@lmdbkraft profile pic"
-          src="assets/img/me.jpg"
-          className="profile-image"
-        />
-      </div>
-      <div className="compose-tweet" onClick={forceFocusToComposer}>
-        <p
-          contentEditable={true}
-          ref={content}
-          name="tweet"
-          onKeyUp={(event) => keyLogger(event, "up")}
-          onKeyDown={(event) => keyLogger(event, "down")}
-          onFocus={togglePlaceholder}
-          onBlur={forcePlaceholderOff}
-          onClick={forceFocusToComposer}
-        ></p>
-        <div>{floating ? "" : <TweetVisibility initialState="everyone" />}</div>
-        <div className="tweet-options">
-          <div></div>
-          <div id="tweet-button-wrapper">
-            <div ref={lettersLeft} className="letters-left"></div>
-            <div>
-              <button
-                ref={publishButton}
-                className="tweet-button"
-                onClick={publish}
-              >
-                Tweet
-              </button>
+    <div id="compose-tweet">
+      <div className="compose-wrapper">
+        <div className="profile-image-wrapper">
+          <img
+            alt="@lmdbkraft profile pic"
+            src={`${ASSETS}/img/me.jpg`}
+            className="profile-image"
+          />
+        </div>
+        <div className="compose-tweet" onClick={forceFocusToComposer}>
+          <p
+            contentEditable={true}
+            ref={content}
+            name="tweet"
+            onKeyUp={(event) => keyLogger(event, "up")}
+            onKeyDown={(event) => keyLogger(event, "down")}
+            onFocus={togglePlaceholder}
+            onBlur={forcePlaceholderOff}
+            onClick={forceFocusToComposer}
+          ></p>
+          <div>
+            {floating ? "" : <TweetVisibility initialState="everyone" />}
+          </div>
+          <div className="tweet-options">
+            <div></div>
+            <div id="tweet-button-wrapper">
+              <div ref={lettersLeft} className="letters-left"></div>
+              <div>
+                <button
+                  ref={publishButton}
+                  className="tweet-button"
+                  onClick={publish}
+                >
+                  {floating ? "Reply" : "Tweet"}
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import LoginState from "../storage/login-state";
 function LoginScreen() {
   function login() {
     LoginState().set("logged-in");
+    LoginState().setCurrentUser("lmdbkraft");
   }
   return (
     <div id="app">

@@ -3,8 +3,25 @@ import IdProvider from "../providers/id/id-provider";
 import ReactDOM from "react-dom";
 
 const randBetween = require("../utils").mentoc.rand.rand_between;
+function fadeOutStatus(loadingDivId) {
+  let opacity = 1.0;
+  let div = document.getElementById(loadingDivId);
+  let fadeOutInterval = window.setInterval(function () {
+    opacity -= 0.15;
+    if (opacity <= 0) {
+      clearInterval(fadeOutInterval);
+      div.style.height = "0px";
+      return;
+    }
+    div.style.opacity = String(opacity);
+  }, 50);
+}
 
 function fetchTweets(url, loadingDivId, feedId) {
+  document.getElementById(loadingDivId).style = {
+    opacity: "1.0",
+    height: "1em",
+  };
   document.getElementById(feedId).innerHTML = "";
   function setLoadingStatus(status) {
     let h4 = document.getElementById(loadingDivId);
@@ -40,9 +57,7 @@ function fetchTweets(url, loadingDivId, feedId) {
               );
             }
             setLoadingStatus("Done.");
-            setTimeout(function () {
-              setLoadingStatus("");
-            }, 1000);
+            fadeOutStatus(loadingDivId);
           })
           .catch(function (issue) {
             setLoadingStatus(
@@ -56,7 +71,7 @@ function fetchTweets(url, loadingDivId, feedId) {
           "Issue loading content. Contact support. support@fluxkraft-os.net"
         );
       });
-  }, randBetween(1, 5) * 1000);
+  }, randBetween(1, 2) * 1000);
 }
 
 export default fetchTweets;

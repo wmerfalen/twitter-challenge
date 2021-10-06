@@ -4,6 +4,7 @@
 :root {
     --main-background-color: rgb(0,0,0);
     --main-foreground-color: rgb(217, 217, 217);
+    --main-foreground-color-bright: white;
     --main-fade-color: grey;
     --logo-height: 100%;
     --logo-width: 100%;
@@ -196,7 +197,7 @@ body {
 }
 
 /**
- * ---[[[ START centering media queries ]]]---
+ * ---[[[ END centering media queries ]]]---
  */
 
 .profile-image {
@@ -255,18 +256,22 @@ a {
     flex-grow: 2;
     flex-shrink: 1;
 }
+.nav-wrapper {
+		padding-left: 1em;
+		padding-top: 1em;
+}
 .left-nav {
     flex-grow: 0;
     flex-shrink: 500;
     display: flex;
-    border-right: 1px solid var(--main-foreground-color);
 }
-.center-column {
+#center-column {
     max-width: var(--home-max-width);
     min-width: var(--home-max-width);
     flex-grow: 0;
     flex-shrink: 10;
     border-right: 1px solid var(--main-fade-color);
+		border-left: 1px solid var(--main-fade-color);
 }
 #whats-happening {
     display: grid;
@@ -308,6 +313,10 @@ a {
     /*border: 1px solid green;*/
     padding-top: 0.6em;
     padding-bottom: 0.6em;
+}
+#who-to-follow div.wf-entry .profile-info b {
+		float: left;
+		clear: both;
 }
 #who-to-follow div.wf-entry .profile-info span {
     color: var(--main-fade-color);
@@ -372,7 +381,8 @@ div {
     z-index: 1;
     background-color: var(--main-background-color);
     padding: 1em;
-    border: 1px solid var(--main-foreground-color);
+    border: 1px solid var(--main-fade-color);
+		border-radius: 20px;
 }
 .visibility-popup div.selection:hover {
     filter: invert(5%);
@@ -407,7 +417,6 @@ div {
     display: grid;
     grid-template-rows: 1fr auto auto;
     padding-left: 1em;
-    margin-top: 1em;
 }
 #tweet-button-wrapper {
     display: grid;
@@ -444,7 +453,7 @@ div {
 }
 .nav-icon {
     width: 2em;
-    height: 1.2em;
+    height: 2em;
     clear: both;
     filter: invert(100%);
 }
@@ -472,6 +481,8 @@ div {
 }
 .icon-wrapper .description {
     font-size: 1.2em;
+		margin-top: 0.2em;
+		margin-left: 0.8em;
 }
 .icon-wrapper .icon {
     max-width: 2em;
@@ -580,6 +591,7 @@ div.tweet-footer .red-hover:hover {
 }
 .home-header span {
     font-weight: bold;
+		font-size: 20px;
 }
 .home-header {
     margin-bottom: 1em;
@@ -609,14 +621,18 @@ div.tweet-footer .red-hover:hover {
     bottom: 0px;
     left: 0px;
     background-color: var(--twitter-blue);
-    color: var(--main-foreground-color);
+    color: var(--main-foreground-color-bright);
     width: 100%;
     display: grid;
-    grid-template-columns: 1.5fr 4fr 1fr;
+    grid-template-columns: 1fr 8fr 1fr;
 		padding-top: 0.3em;
+		padding-bottom: 0.4em;
 }
 .fixed-login-banner .dont-miss .dm-top {
     font-size: 23px;
+}
+.fixed-login-banner .dont-miss .dm-bottom {
+		font-size: 15px;
 }
 .fixed-login-banner .buttons {
 		display: grid;
@@ -624,9 +640,13 @@ div.tweet-footer .red-hover:hover {
 }
 .fixed-login-banner .buttons button {
 		border-radius: 9999px;
-		width: 5em;
-		height: 2.3em;
+		width: 6.4em;
+		height: 2.5em;
+		margin-top: 0.8em;
 		font-family: var(--twitter-chirp-font-family);
+		font-size: 14px;
+		font-weight: bold;
+		padding: 0em 0.8em;
 }
 .fixed-login-banner .buttons .login:hover {
     cursor: pointer;
@@ -643,6 +663,7 @@ div.tweet-footer .red-hover:hover {
 .fixed-login-banner .buttons .sign-up {
     background-color: var(--main-foreground-color);
     color: var(--twitter-blue);
+		border: none;
 }
 #login-modal-wrapper {
     position: absolute;
@@ -773,17 +794,19 @@ button.disabled:hover {
 	width: 500px;
 	padding: 1em 0.5em;
 }
+
+.dismiss {
+	 padding-left: 1em;
+	 font-size: 13px;
+}
+.dismiss:hover {
+	 cursor: pointer;
+}
 .floater-wrapper {
 	position: absolute;
 	background-color: var(--main-background-color);
 	border: 1px solid var(--main-foreground-color);
-}
-
-.dismiss {
-	 padding-left: 1em;
-}
-.dismiss:hover {
-	 cursor: pointer;
+	border-radius: 10px;
 }
 .floater-wrapper .tweet-container {
 	 border-bottom: none;

@@ -1,10 +1,4 @@
-import { React } from "react";
 import ReactDOM from "react-dom";
-//import NavIcon from './nav-icon.js';
-//import IdProvider from './id-provider.js';
-//import LoginState from './login-tracker.js';
-//import LoginModal from './login-modal.js';
-//import FloatingReply from './floating-reply.js';
 
 import FloatingReply from "./floating-reply";
 import LoginState from "../storage/login-state";
@@ -16,7 +10,6 @@ const { debounce, calculateTime } = require("../utils/");
  * CONSTANTS
  */
 const FLOATING_PROFILE_DIV = "floating-profile-div";
-//const BACKDROP_ID = "floating-profile-backdrop";
 const FLOATING_REPLY_DIV = "floating-reply-div";
 
 function getLikes(in_tweet) {
@@ -196,7 +189,6 @@ const removeProfilePreview = debounce(function (which_tweet) {
 }, 1000);
 
 function tweetFooter(tweet, floating) {
-  console.log({ tweet });
   if (floating) {
     return <div></div>;
   }
@@ -248,7 +240,7 @@ function tweetFooter(tweet, floating) {
 /**
  * Main entry point where all the tweet will get rendered
  */
-function Tweet({ tweet, floating }) {
+function Tweet({ tweet, floating, type }) {
   function getLense(in_tweet) {
     if (
       typeof in_tweet["lense"] !== "undefined" &&
@@ -335,7 +327,6 @@ function Tweet({ tweet, floating }) {
           {tweet.userName}
         </span>
         <span className="tweet-timestamp">
-          {" "}
           · {calculateTime(tweet.timeStamp)}
         </span>
         <br />

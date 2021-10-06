@@ -21,7 +21,7 @@ function FloatingReply({ for_tweet }) {
         <Tweet tweet={for_tweet} floating={true} />
       </div>
       <div className="compose-tweet-wrapper">
-        <ComposeTweet floating={true} />
+        <ComposeTweet tweet={for_tweet} floating={true} />
       </div>
     </div>
   );

@@ -5,10 +5,12 @@ import TweetVisibility from "../../tweet/tweet-visibility";
 import LeftNav from "../../navigation/left-nav";
 
 import Tweet from "../../tweet/tweet";
+import ComposeTweet from "../../editor/compose-tweet";
 import IdProvider from "../../providers/id/id-provider";
+import Config from "../../config/";
 
 function Home({ loadingDivId, feedId }) {
-  console.log({ loadingDivId, feedId });
+  const ASSETS = Config.ASSETS_BASE_URL;
   return (
     <div id="home-app">
       <div className="main-content">
@@ -35,7 +37,7 @@ function Home({ loadingDivId, feedId }) {
               </div>
             </div>
           </div>
-          <div id="compose-tweet"></div>
+          <ComposeTweet />
           <div id="newly-created-tweet"></div>
           <div id={loadingDivId}></div>
           <div id={feedId}></div>
@@ -57,7 +59,7 @@ function Home({ loadingDivId, feedId }) {
                 </div>
               </div>
               <div className="image-wrapper">
-                <img src="assets/img/whats-happening/pbs.jpg" />
+                <img src={`${ASSETS}/img/whats-happening/pbs.jpg`} />
               </div>
             </div>
             <div className="wh-entry">
@@ -72,7 +74,7 @@ function Home({ loadingDivId, feedId }) {
                 </div>
               </div>
               <div className="image-wrapper">
-                <img src="assets/img/whats-happening/covid.jpg" />
+                <img src={`${ASSETS}/img/whats-happening/covid.jpg`} />
               </div>
             </div>
             <div className="wh-entry">
@@ -85,7 +87,7 @@ function Home({ loadingDivId, feedId }) {
                 </div>
               </div>
               <div className="image-wrapper">
-                <img src="assets/img/whats-happening/pbs.jpg" />
+                <img src={`${ASSETS}/img/whats-happening/pbs.jpg`} />
               </div>
             </div>
           </div>
@@ -95,7 +97,7 @@ function Home({ loadingDivId, feedId }) {
             </div>
             <div className="wf-entry">
               <div className="profile-pic">
-                <img src="assets/img/who-to-follow/faraz.jpg" />
+                <img src={`${ASSETS}/img/who-to-follow/faraz.jpg`} />
               </div>
               <div className="profile-info">
                 <b>faraz ahmad</b>
@@ -107,7 +109,7 @@ function Home({ loadingDivId, feedId }) {
             </div>
             <div className="wf-entry">
               <div className="profile-pic">
-                <img src="assets/img/who-to-follow/camp.jpg" />
+                <img src={`${ASSETS}/img/who-to-follow/camp.jpg`} />
               </div>
               <div className="profile-info">
                 <b>Beyond Code Bootcamp</b>
@@ -119,7 +121,7 @@ function Home({ loadingDivId, feedId }) {
             </div>
             <div className="wf-entry">
               <div className="profile-pic">
-                <img src="assets/img/who-to-follow/fem.jpg" />
+                <img src={`${ASSETS}/img/who-to-follow/fem.jpg`} />
               </div>
               <div className="profile-info">
                 <b>Frontend Masters</b>
