@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Quick start
 
-### `npm run start`
+### `npm i && npm run start`
 
 Runs the app which will by default listen on port 3000 of `localhost`
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
