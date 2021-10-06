@@ -4,7 +4,7 @@ function AutoLoginMiddleware() {
     link.onclick = function (event) {
       event.preventDefault();
       window.localStorage.setItem(LOGIN_STATE, "logged-in");
-      window.location.href = "home.html";
+      window.location.href = "/home";
     };
   }
 }

@@ -1,15 +1,12 @@
 import GoogleSignupSvg from "../svg/signup/google";
 import AppleSignupSvg from "../svg/signup/apple";
 import BirdSvg from "../svg/bird";
+import LoginState from "../storage/login-state";
 
 function LoginScreen() {
-  /**
-   * FIXME: this content was originally wrapped in
-   * <div id="app">
-   * Make sure to refactor all occurrences that may be
-   * affected by that. (i.e.: css styles), or direct
-   * mounts using ReactDOM.render
-   */
+  function login() {
+    LoginState().set("logged-in");
+  }
   return (
     <div id="app">
       <div className="split-columns">
@@ -17,25 +14,25 @@ function LoginScreen() {
           <BirdSvg />
         </div>
         <div className="login flex-vertical-center">
-          <BirdSvg />
+          <BirdSvg className="twitter-logo" />
           <h1>Happening now</h1>
           <h2>Join Twitter today.</h2>
           <div className="single-sign-on">
-            <a href="/home.html" className="login-mechanism">
+            <a href="/home" className="login-mechanism" onClick={login}>
               <GoogleSignupSvg />
               Sign up with Google
             </a>
             <br />
           </div>
           <div className="single-sign-on">
-            <a href="/home.html#" className="login-mechanism">
+            <a href="/home" className="login-mechanism" onClick={login}>
               <AppleSignupSvg />
               Sign up with Apple
             </a>
             <br />
           </div>
           <div className="single-sign-on">
-            <a href="/home.html#" className="login-mechanism">
+            <a href="/home" className="login-mechanism" onClick={login}>
               Sign up with phone or email
             </a>
             <br />
@@ -59,7 +56,7 @@ function LoginScreen() {
           </span>
           <span className="existing-members">
             Already have an account?
-            <a href="home.html#" className="blue login-mechanism">
+            <a href="home" className="blue login-mechanism" onClick={login}>
               Sign in
             </a>
           </span>

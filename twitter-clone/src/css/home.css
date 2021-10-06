@@ -40,15 +40,15 @@
  */
 @font-face {
     font-family: TwitterChirpExtendedHeavy;
-    src: url("/clones/assets/fonts/chirp-extended-heavy-web.woff");
+    src: url("../fonts/chirp-extended-heavy-web.woff");
 }
 @font-face {
     font-family: TwitterChirpBold;
-    src: url("/clones/assets/fonts/chirp-bold-web.woff");
+    src: url("../fonts/chirp-bold-web.woff");
 }
 @font-face {
     font-family: TwitterChirp;
-    src: url("/clones/assets/fonts/chirp-regular-web.woff");
+    src: url("../fonts/chirp-regular-web.woff");
 }
 /**
  * Removing default browser style sheet
@@ -60,6 +60,10 @@ body {
     width: 100%;
     height: 100%;
     font-family: var(--twitter-chirp-font-family);
+}
+
+.hover-cursor:hover {
+		cursor: pointer;
 }
 
 /**
@@ -459,8 +463,6 @@ div {
 
 .icon-wrapper:hover {
     cursor: pointer;
-    border-radius: 9999px;
-    background-color: var(--main-fade-color);
 }
 
 .icon-wrapper {
@@ -611,23 +613,28 @@ div.tweet-footer .red-hover:hover {
     width: 100%;
     display: grid;
     grid-template-columns: 1.5fr 4fr 1fr;
-    padding-top: 1em;
-    padding-bottom: 0.7em;
+		padding-top: 0.3em;
 }
 .fixed-login-banner .dont-miss .dm-top {
-    font-size: 1.6em;
+    font-size: 23px;
 }
 .fixed-login-banner .buttons {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+}
+.fixed-login-banner .buttons button {
+		border-radius: 9999px;
+		width: 5em;
+		height: 2.3em;
+		font-family: var(--twitter-chirp-font-family);
 }
 .fixed-login-banner .buttons .login:hover {
     cursor: pointer;
 }
-.fixed-login-banner .buttons .login {
+.fixed-login-banner .buttons button.login {
     border: 1px solid var(--main-foreground-color);
     background-color: var(--twitter-blue);
-    border-radius: 9px;
     color: var(--main-foreground-color);
-    padding: 0.7em;
     margin-right: 1em;
 }
 .fixed-login-banner .buttons .sign-up:hover {
@@ -635,9 +642,7 @@ div.tweet-footer .red-hover:hover {
 }
 .fixed-login-banner .buttons .sign-up {
     background-color: var(--main-foreground-color);
-    border-radius: 9px;
     color: var(--twitter-blue);
-    padding: 0.7em;
 }
 #login-modal-wrapper {
     position: absolute;
@@ -658,30 +663,45 @@ div.tweet-footer .red-hover:hover {
     transform: translate(-50%, -50%);
     border: 1px solid var(--main-foreground-color);
     border-radius: 15px;
-    padding: 0.5em;
+		width: 400px;
+}
+.login-popup .cta {
+	margin: 3em;
 }
 .login-popup div.heart {
     margin: 0 auto;
     filter: invert(100%);
     width: 3em;
 }
-.login-popup h1 {
-    padding-left: 1em;
+.login-popup h4 {
+    padding-left: 1.3em;
+		font-size: 12px;
 }
-.login-popup h1:hover {
+.login-popup h4:hover {
     cursor: pointer;
 }
 .login-popup .login-wrapper {
     display: grid;
     grid-template-rows: 1fr 1fr;
     width: 100%;
-    margin-top: 1em;
+		margin-top: 2em;
 }
-.login-cta {
+.login-popup p {
+		font-size: 11px;
+    color: var(--main-fade-color);
+}
+.login-popup button {
+		margin-top: 1em;
+		border: none;
+}
+.login-popup .login-wrapper button.login-cta {
     padding: 0em 3em;
-    margin-bottom: 4em;
-}
-.login-popup .login-wrapper .login-cta {
+		border: 1px solid var(--main-foreground-color);
+		background-color: var(--twitter-blue);
+		border-radius: 9px;
+		color: var(--main-foreground-color);
+		padding: 0.7em;
+		margin-right: 1em;
 }
 .login-popup .login-wrapper .container button {
     position: relative;
@@ -689,7 +709,7 @@ div.tweet-footer .red-hover:hover {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 80%;
-    padding: 1em 0.5em;
+		height: 3em;
     border-radius: 18px;
     font-weight: 800;
 }
@@ -697,11 +717,13 @@ div.tweet-footer .red-hover:hover {
 .login-popup .login-wrapper .container button.login {
     background-color: var(--twitter-blue);
     color: var(--main-foreground-color);
+		margin-left: 0;
 }
 
 .login-popup .login-wrapper .container button.sign-up {
     color: var(--twitter-blue);
-    background-color: var(--main-foreground-color);
+    background-color: var(--main-background-color);
+    border: 1px solid var(--main-foreground-color);
 }
 
 .login-popup .login-wrapper .container button:hover {
@@ -736,45 +758,45 @@ button.disabled:hover {
     background-color: var(--main-background-color);
     border-radius: 10px;
     border: 1px solid var(--main-foreground-color);
- }
+}
 
- .hover-cursor:hover {
-    cursor: pointer;
- }
+.hover-cursor:hover {
+	cursor: pointer;
+}
 
- #floating-reply-div {
-    z-index: 1;
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 500px;
-    padding: 1em 0.5em;
- }
+#floating-reply-div {
+	z-index: 1;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 500px;
+	padding: 1em 0.5em;
+}
 .floater-wrapper {
-    position: absolute;
-    background-color: var(--main-background-color);
-    border: 1px solid var(--main-foreground-color);
- }
+	position: absolute;
+	background-color: var(--main-background-color);
+	border: 1px solid var(--main-foreground-color);
+}
 
- .dismiss {
-     padding-left: 1em;
- }
- .dismiss:hover {
-     cursor: pointer;
- }
- .floater-wrapper .tweet-container {
-     border-bottom: none;
- }
- .floater-wrapper .compose-wrapper {
-     border-bottom: none;
-     padding: 1em;
- }
- .header {
-     border-bottom: 1px solid var(--main-foreground-color);
- }
+.dismiss {
+	 padding-left: 1em;
+}
+.dismiss:hover {
+	 cursor: pointer;
+}
+.floater-wrapper .tweet-container {
+	 border-bottom: none;
+}
+.floater-wrapper .compose-wrapper {
+	 border-bottom: none;
+	 padding: 1em;
+}
+.header {
+	 border-bottom: 1px solid var(--main-foreground-color);
+}
 
- .overflow-error {
-     color: var(--main-foreground-color);
-     background-color: var(--overflow-error-background-color);
- }
+.overflow-error {
+	 color: var(--main-foreground-color);
+	 background-color: var(--overflow-error-background-color);
+}

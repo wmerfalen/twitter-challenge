@@ -10,17 +10,17 @@ function LoginPrompter({ wrapperId }) {
     document.getElementById(MODAL_WRAPPER_ID).remove();
   }
   function gotoLogin() {
-    window.location.href = "/clones/index.html";
+    window.location.href = "/";
   }
   return (
     <div className="login-popup">
-      <h1 onClick={dismiss}>X</h1>
+      <h4 onClick={dismiss}>X</h4>
       <div className="heart">
         <LoginPromptSvg />
       </div>
-      <div className="login-cta">
+      <div className="cta">
         <h3>Like a tweet to share the love</h3>
-        <p className="cta">
+        <p>
           Join Twitter now to let William Merfalen know you like their Tweet.
         </p>
       </div>

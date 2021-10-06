@@ -1,13 +1,13 @@
 import React from "react";
 import LoginState from "./login-state";
-//ReactDOM.render(<LoginTracker />, document.getElementById("login-tracker"));
+
 function LoginTracker() {
   const [loginState, setLoginState] = React.useState(LoginState().get());
   const [page, setPageTo] = React.useState(null);
   React.useEffect(() => {
     LoginState().set(loginState);
     if (["login", "signup"].indexOf(page) > -1) {
-      window.location.href = "index.html";
+      window.location.href = "/";
     }
   });
   if (LoginState().isLoggedIn() === false) {

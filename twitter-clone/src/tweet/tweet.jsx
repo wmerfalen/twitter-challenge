@@ -1,4 +1,5 @@
-import { React, ReactDOM } from "react";
+import { React } from "react";
+import ReactDOM from "react-dom";
 //import NavIcon from './nav-icon.js';
 //import IdProvider from './id-provider.js';
 //import LoginState from './login-tracker.js';
@@ -63,7 +64,7 @@ function FloatingProfile({ left, top, tweet }) {
     top: top + 20 + "px",
   };
   function getUserProfilePic(tweet) {
-    return `assets/img/users/${tweet.userName
+    return `https://raw.githubusercontent.com/wmerfalen/clones/master/assets/img/users/${tweet.userName
       .replace(/@/, "")
       .toLowerCase()}.jpg`;
   }
@@ -84,7 +85,7 @@ function FloatingProfile({ left, top, tweet }) {
       <div className="header">
         <div>
           <img
-            alt={`${tweet.name} profile pic`}
+            alt={`${tweet.from} profile pic`}
             src={getUserProfilePic(tweet)}
           />
         </div>
@@ -96,7 +97,7 @@ function FloatingProfile({ left, top, tweet }) {
       </div>
       <div className="profile-description">
         <div>
-          <h4>{tweet.name}</h4>
+          <h4>{tweet.from}</h4>
         </div>
         <div>{tweet.userName}</div>
         <div>Doing things is what I do</div>
@@ -165,7 +166,7 @@ function profilePic(tweet) {
     .toLowerCase()
     .replace("@", "")
     .replace(/[^a-z0-9_]+/, "");
-  return `assets/img/users/${user}.jpg`;
+  return `https://raw.githubusercontent.com/wmerfalen/clones/master/assets/img/users/${user}.jpg`;
 }
 
 const profilePreview = debounce(function (which_tweet, left, top) {
@@ -195,6 +196,7 @@ const removeProfilePreview = debounce(function (which_tweet) {
 }, 1000);
 
 function tweetFooter(tweet, floating) {
+  console.log({ tweet });
   if (floating) {
     return <div></div>;
   }
@@ -304,7 +306,7 @@ function Tweet({ tweet, floating }) {
         onMouseOver={(event) => profilePreview(tweet, event.pageX, event.pageY)}
         onMouseLeave={() => removeProfilePreview(tweet)}
       >
-        <img alt={`${tweet.name} profile pic`} src={profilePic(tweet)} />
+        <img alt={`${tweet.from} profile pic`} src={profilePic(tweet)} />
       </div>
       <div className="tweet-content hover-cursor">
         <b

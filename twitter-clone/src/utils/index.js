@@ -44,4 +44,10 @@ function profilePic(tweet) {
   return `assets/img/users/${user}.jpg`;
 }
 
-module.exports = { profilePic, debounce, calculateTime, extract };
+module.exports = {
+  profilePic,
+  debounce,
+  calculateTime,
+  extract,
+  mentoc: require("@mentoc/utils"),
+};
