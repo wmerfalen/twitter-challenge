@@ -78,4 +78,56 @@ state to logged in and will render the logged in portion of Twitter.
 gives you a link to login/sign up. As stated above, logging in and signing in are
 the same thing and will cause the page to render differently depending on that value.
 
+### Home component
 
+`src/views/home/index.jsx`. This is the only other view in the app. It's the feed and
+all the content you see when you're logged in or visiting Twitter.
+
+### Login modal
+
+`src/login/login-modal.jsx`. To trigger this modal, log out and click on either the
+like button or the reply button on any tweet.
+
+### Composing a tweet
+
+`src/editor/compose-tweet.jsx`. Initially, the strategy was to utilize an `<input>` element
+that would be styled appropriately. That was ditched in favor of the `contenteditable`
+feature. This makes for a very clean interface that I feel closely resembles the behaviour
+seen on Twitter. It might make sense to have a fallback to an input tag (polyfill) for those
+browsers that haven't played catch up.
+
+
+### The beauty of re-use
+
+The same code that's used to compose a tweet at the top of the page is also used when you
+reply to a tweet (the popup when you reply/add another tweet).
+
+
+### What I left out
+
+Since all network access is essentially read-only, it didn't make sense to handle complex
+tweet content like image uploads. While this isn't hard to flush to localStorage (since you
+can get direct access to the base64-encoded image data), I didn't feel like it was a super
+high priority feature.
+
+Nearly every link in the left nav does nothing except change the URL to a hash.
+
+
+### What could be improved
+
+One thing I could not get to work effectively is highlighting the text that goes over the char limit.
+This proved to be a very frustrating feature to emulate. 
+
+Proportions may be different/funky. I tried to use media queries to get the content to look centered
+at different resolutions. I'm guessing using flexbox CSS rules would make this easier.
+
+I'm not exactly sure how to code styles using class-less CSS, but I'm open to learning it. I've seen
+some libraries that claim to be class-less CSS, but have found very little in terms of learning
+how to approach the concept in general. Maybe I'm not looking hard enough.
+
+At some point, I'd like to be able to change the theme of the App. This could be done fairly easily
+as I use CSS variables for every color. There might be a few edge cases there that I haven't thought
+of, but the work has been done to make that fairly easy.
+
+
+# Last updated: 2021-10-06 05:23 AM
