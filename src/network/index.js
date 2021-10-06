@@ -4,7 +4,6 @@ import Config from "../config/";
 const Network = {
   config: Config,
   pageChanged: function (href) {
-    console.log({ href });
     if (href.match(/^\/home/)) {
       Network.fetchTweets();
     }
