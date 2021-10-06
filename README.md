@@ -20,11 +20,12 @@ the image URL's are actually pointing to a separate git repo. This was done to h
 speed up the development without having to write an Express portion of the app.
 
 There were three phases of this app:
-1) It started as a simplistic Express JS app with a single static file rule to host everything at `/public`
 
-2) The assets were compiled and hosted on a github pages site at: [First Draft of this App](https://wmerfalen.github.io/clones/)
+1. It started as a simplistic Express JS app with a single static file rule to host everything at `/public`
 
-3) It's final form: this repo with build instructions and the ability to run this locally.
+2. The assets were compiled and hosted on a github pages site at: [First Draft of this App](https://wmerfalen.github.io/clones/)
+
+3. It's final form: this repo with build instructions and the ability to run this locally.
 
 ### Static assets
 
@@ -33,9 +34,8 @@ Fonts, CSS, SVGs are hosted in their own respective folders (`src/fonts`,`src/cs
 ### Maintaining state
 
 I use localStorage to keep track of login status, likes, and new tweets.
-Those can be found in the `src/storage` directory. 
+Those can be found in the `src/storage` directory.
 New tweets and replies are stored in localStorage.
-
 
 ### Data source
 
@@ -55,11 +55,10 @@ app.
 
 ### How tweets are fetched
 
-I don't like the way I did this *at all*, but I'm essentially using a `useEffect` call
+I don't like the way I did this _at all_, but I'm essentially using a `useEffect` call
 to trigger the fetching of tweets. This has no explicit dependencies and will get triggered
 if the app ever starts to go through changes in the future. Admittedly, I do not know
-of a better way to load the Tweets *after* the `Home` component is rendered.
-
+of a better way to load the Tweets _after_ the `Home` component is rendered.
 
 ### How Likes are persisted
 
@@ -68,8 +67,8 @@ everything for you.
 
 ### How login state is persisted
 
-`src/storage/login-state.jsx` uses a simple localStorage mechanism to set/get 
-login status. Clicking on *any* of the sign up/login links will set your login
+`src/storage/login-state.jsx` uses a simple localStorage mechanism to set/get
+login status. Clicking on _any_ of the sign up/login links will set your login
 state to logged in and will render the logged in portion of Twitter.
 
 ### Fixed banner at the bottom of the page
@@ -96,12 +95,10 @@ feature. This makes for a very clean interface that I feel closely resembles the
 seen on Twitter. It might make sense to have a fallback to an input tag (polyfill) for those
 browsers that haven't played catch up.
 
-
 ### The beauty of re-use
 
 The same code that's used to compose a tweet at the top of the page is also used when you
 reply to a tweet (the popup when you reply/add another tweet).
-
 
 ### What I left out
 
@@ -112,22 +109,27 @@ high priority feature.
 
 Nearly every link in the left nav does nothing except change the URL to a hash.
 
-
 ### What could be improved
 
-One thing I could not get to work effectively is highlighting the text that goes over the char limit.
-This proved to be a very frustrating feature to emulate. 
+-   I apologize for the use of divs to position elements, but I honestly don't know of a better
+    technique. This may be overkill in some places.
 
-Proportions may be different/funky. I tried to use media queries to get the content to look centered
-at different resolutions. I'm guessing using flexbox CSS rules would make this easier.
+-   I feel like there are still parts of the styling that could look a lot better. Please note that I
+    was a backend developer for nearly 90% of my career. If there are any places where I can improve,
+    _please_ let me know. I thrive on criticism.
 
-I'm not exactly sure how to code styles using class-less CSS, but I'm open to learning it. I've seen
-some libraries that claim to be class-less CSS, but have found very little in terms of learning
-how to approach the concept in general. Maybe I'm not looking hard enough.
+-   One thing I could not get to work effectively is highlighting the text that goes over the char limit.
+    This proved to be a very frustrating feature to emulate.
 
-At some point, I'd like to be able to change the theme of the App. This could be done fairly easily
-as I use CSS variables for every color. There might be a few edge cases there that I haven't thought
-of, but the work has been done to make that fairly easy.
+-   Proportions may be different/funky. I tried to use media queries to get the content to look centered
+    at different resolutions. I'm guessing using flexbox CSS rules would make this easier.
 
+-   I'm not exactly sure how to code styles using class-less CSS, but I'm open to learning it. I've seen
+    some libraries that claim to be class-less CSS, but have found very little in terms of learning
+    how to approach the concept in general. Maybe I'm not looking hard enough.
+
+-   At some point, I'd like to be able to change the theme of the App. This could be done fairly easily
+    as I use CSS variables for every color. There might be a few edge cases there that I haven't thought
+    of, but the work has been done to make that fairly easy.
 
 # Last updated: 2021-10-06 05:23 AM
