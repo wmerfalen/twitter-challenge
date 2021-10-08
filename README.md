@@ -1,6 +1,17 @@
-# Twitter clone
+# Twitter clone challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a demonstration of my capabilities as a frontend developer.
+In this repo you will see the level of my skills in the following
+areas:
+
+- React (Hooks)
+- Javascript
+- CSS variables
+- Media queries
+- Async, Promises, fetch() API
+- React Router DOM
+- Local Storage usage
+- Modularization and code structuring
 
 ## Quick start
 
