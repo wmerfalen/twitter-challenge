@@ -1,12 +1,7 @@
-import { React, ReactDOM } from "react";
+import React from "react";
 import "../../css/home.css";
-import ChirpExtendedHeavyWebFont from "../../fonts/chirp-extended-heavy-web.woff";
-import TweetVisibility from "../../tweet/tweet-visibility";
 import LeftNav from "../../navigation/left-nav";
-
-import Tweet from "../../tweet/tweet";
 import ComposeTweet from "../../editor/compose-tweet";
-import IdProvider from "../../providers/id/id-provider";
 import Config from "../../config/";
 
 function Home({ loadingDivId, feedId }) {
@@ -59,7 +54,7 @@ function Home({ loadingDivId, feedId }) {
                 </div>
               </div>
               <div className="image-wrapper">
-                <img src={`${ASSETS}/img/whats-happening/pbs.jpg`} />
+                <img alt="whats happening at pbs" src={`${ASSETS}/img/whats-happening/pbs.jpg`} />
               </div>
             </div>
             <div className="wh-entry">
@@ -74,7 +69,7 @@ function Home({ loadingDivId, feedId }) {
                 </div>
               </div>
               <div className="image-wrapper">
-                <img src={`${ASSETS}/img/whats-happening/covid.jpg`} />
+                <img alt="whats happening with covid" src={`${ASSETS}/img/whats-happening/covid.jpg`} />
               </div>
             </div>
             <div className="wh-entry">
@@ -87,7 +82,7 @@ function Home({ loadingDivId, feedId }) {
                 </div>
               </div>
               <div className="image-wrapper">
-                <img src={`${ASSETS}/img/whats-happening/pbs.jpg`} />
+                <img alt="whats happening at pbs" src={`${ASSETS}/img/whats-happening/pbs.jpg`} />
               </div>
             </div>
           </div>
@@ -97,7 +92,7 @@ function Home({ loadingDivId, feedId }) {
             </div>
             <div className="wf-entry">
               <div className="profile-pic">
-                <img src={`${ASSETS}/img/who-to-follow/faraz.jpg`} />
+                <img alt="follow faraz" src={`${ASSETS}/img/who-to-follow/faraz.jpg`} />
               </div>
               <div className="profile-info">
                 <b>faraz ahmad</b>
@@ -109,7 +104,7 @@ function Home({ loadingDivId, feedId }) {
             </div>
             <div className="wf-entry">
               <div className="profile-pic">
-                <img src={`${ASSETS}/img/who-to-follow/camp.jpg`} />
+                <img alt="follow beyondcode" src={`${ASSETS}/img/who-to-follow/camp.jpg`} />
               </div>
               <div className="profile-info">
                 <b>Beyond Code Bootcamp</b>
@@ -121,7 +116,7 @@ function Home({ loadingDivId, feedId }) {
             </div>
             <div className="wf-entry">
               <div className="profile-pic">
-                <img src={`${ASSETS}/img/who-to-follow/fem.jpg`} />
+                <img alt="follow Frontend Masters" src={`${ASSETS}/img/who-to-follow/fem.jpg`} />
               </div>
               <div className="profile-info">
                 <b>Frontend Masters</b>

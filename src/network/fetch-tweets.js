@@ -1,5 +1,4 @@
 import Tweet from "../tweet/tweet";
-import IdProvider from "../providers/id/id-provider";
 import ReactDOM from "react-dom";
 
 const randBetween = require("../utils").mentoc.rand.rand_between;

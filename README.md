@@ -4,13 +4,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Quick start
 
-### `npm i && npm run start`
+### `npm ci && npm run start`
 
 Runs the app which will by default listen on port 3000 of `localhost`
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+## Building for production
+
+### `npm run build`
+
+This will create an optimized production build in the `build` folder.
 
 ## Organization
 
