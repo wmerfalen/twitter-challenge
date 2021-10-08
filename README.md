@@ -17,6 +17,7 @@ You will also see any lint errors in the console.
 ### `npm run build`
 
 This will create an optimized production build in the `build` folder.
+For more details regarding this process, see: [Creating a production build](https://create-react-app.dev/docs/production-build/)
 
 ## Organization
 
@@ -138,4 +139,4 @@ Nearly every link in the left nav does nothing except change the URL to a hash.
     as I use CSS variables for every color. There might be a few edge cases there that I haven't thought
     of, but the work has been done to make that fairly easy.
 
-# Last updated: 2021-10-06 05:23 AM
+### Last updated: 2021-10-07 23:09
