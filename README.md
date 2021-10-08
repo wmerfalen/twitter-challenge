@@ -12,20 +12,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-## Building for production
+## Building and deploying
 
-### `npm run build`
-
-This will create an optimized production build in the `build` folder.
-For more details regarding this process, see: [Creating a production build](https://create-react-app.dev/docs/production-build/)
-
-## Deploying code
-
-The easiest way to serve the application is to use the `serve` npm package.
-This will create a static file server and allow you to host the app with a single line of code.
+Build the app using `npm run build` then serve it with the `serve` npm package.
+Obviously there are several different ways to serve the app and this is just one of them.
 
 ```
-npm install --save-dev serve
+npm run build
 node ./node_modules/serve/bin/serve.js -s build
 ```
 
