@@ -22,6 +22,13 @@ npm run build
 node ./node_modules/serve/bin/serve.js -s build
 ```
 
+## Alternate deployments
+
+The [Create React App](https://create-react-app.dev/) site has a lot of great resources on how to optimize and build a React app.
+For instructions on how to serve the application with something other than the `serve` package,
+checkout [The Create React App deployment documentation](https://create-react-app.dev/docs/deployment/).
+
+
 ## Organization
 
 I've tried to take advantage of importing assets directly into React using the import
@@ -142,4 +149,3 @@ Nearly every link in the left nav does nothing except change the URL to a hash.
     as I use CSS variables for every color. There might be a few edge cases there that I haven't thought
     of, but the work has been done to make that fairly easy.
 
-### Last updated: 2021-10-07 23:39
