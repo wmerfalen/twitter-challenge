@@ -1,5 +1,5 @@
 const Config = {
-	BASE_URL: "/twitter-challenge-static",
+	BASE_URL: "",
 	MAX_TWEET_LENGTH: 280,
   SUPPORT_EMAIL: "wmerfalen@gmail.com",
   TWEETS_DATA_SOURCE: "https://raw.githubusercontent.com/wmerfalen/clones/master/tweets.json",
