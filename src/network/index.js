@@ -1,10 +1,11 @@
 import fetchTweets from "./fetch-tweets";
 import Config from "../config/";
+import Url from "../url";
 
 const Network = {
   config: Config,
   pageChanged: function (href) {
-    if (href.match(/^\/home/)) {
+    if (Url.shouldFetch(href)){
       Network.fetchTweets();
     }
   },

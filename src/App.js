@@ -17,6 +17,7 @@ import {
 import Home from "./views/home";
 import Network from "./network/";
 import Config from "./config/";
+import Url from "./url";
 
 function App() {
   React.useEffect(function () {
@@ -24,7 +25,7 @@ function App() {
   });
 
   return (
-    <Router>
+    <Router basename={Url.base()}>
       <div>
         <Switch>
           <Route exact path="/">

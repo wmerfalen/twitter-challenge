@@ -1,5 +1,6 @@
 import React from "react";
 import LoginState from "./login-state";
+import Url from "../url";
 
 function LoginTracker() {
   const [loginState, setLoginState] = React.useState(LoginState().get());
@@ -7,7 +8,7 @@ function LoginTracker() {
   React.useEffect(() => {
     LoginState().set(loginState);
     if (["login", "signup"].indexOf(page) > -1) {
-      window.location.href = "/";
+      window.location.href = Url("/");
     }
   });
   if (LoginState().isLoggedIn() === false) {

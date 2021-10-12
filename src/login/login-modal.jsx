@@ -1,16 +1,14 @@
-import { React } from "react";
-
 import LoginPromptSvg from "../svg/login-prompt";
+import Url from "../url";
 
 const POPUP_ID = "tweet-login-popup";
-//const BACKDROP_ID = "tweet-login-backdrop";
 const MODAL_WRAPPER_ID = "login-modal-wrapper";
 function LoginPrompter({ wrapperId }) {
   function dismiss() {
     document.getElementById(MODAL_WRAPPER_ID).remove();
   }
   function gotoLogin() {
-    window.location.href = "/";
+    window.location.href = Url("/");
   }
   return (
     <div className="login-popup">
