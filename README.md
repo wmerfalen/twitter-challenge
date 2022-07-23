@@ -13,8 +13,6 @@ areas:
 - Local Storage usage
 - Modularization and code structuring
 
-## Live demo
-[https://fluxkraft-os.net/](https://fluxkraft-os.net/)
 
 ## Quick start
 
