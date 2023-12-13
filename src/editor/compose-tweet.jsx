@@ -51,7 +51,7 @@ function ComposeTweet(props) {
       return;
     }
     content.current.innerHTML =
-      "<span class='wh-placeholder'>What's happening?</span>";
+      "<span class='wh-placeholder'>What is happening?!</span>";
   }
   /**
    * Publish to the timeline
@@ -198,7 +198,7 @@ function ComposeTweet(props) {
                   className="tweet-button"
                   onClick={publish}
                 >
-                  {floating ? "Reply" : "Tweet"}
+                  {floating ? "Reply" : "Post"}
                 </button>
               </div>
             </div>

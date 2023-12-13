@@ -413,6 +413,9 @@ div {
     width: 60px;
     /*height: 3em;*/
 }
+html body div#root div div#home-app div.main-content div#center-column.center-column.column div#compose-tweet div.compose-wrapper div.profile-image-wrapper img.profile-image {
+  padding-top: 2em;
+}
 .compose-tweet {
     display: grid;
     grid-template-rows: 1fr auto auto;
@@ -421,6 +424,8 @@ div {
 #tweet-button-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    position: relative;
+    top: -2.8em;
 }
 .letters-left {
     padding-right: 1em;
@@ -432,7 +437,7 @@ div {
 .tweet-options {
     display: grid;
     grid-template-columns: 6fr 1fr;
-    height: 2em;
+    height: 0em;
 }
 .tweet-button {
     background-color: var(--twitter-blue);
@@ -755,6 +760,8 @@ div.tweet-footer .red-hover:hover {
 }
 .tweet-len-overflow {
     color: var(--tweet-len-overflow-color);
+    position: relative;
+    top: 0.5em;
 }
 
 button.disabled {
